@@ -122,12 +122,17 @@
   .sort-bar select {
     padding: 6px 12px;
     border: 1px solid rgba(255,215,0,0.3);
-    background: rgba(255,255,255,0.05);
+    background: #1a1a2e;
     color: #ddd;
     border-radius: 8px;
     font-family: 'Inter', sans-serif;
     font-size: 0.85em;
     cursor: pointer;
+  }
+
+  .sort-bar select option {
+    background: #1a1a2e;
+    color: #ddd;
   }
 
   .container {
@@ -470,17 +475,19 @@
 <div class="section active" id="section-awards">
 
 <div class="filters" id="awards-filters">
-  <button class="filter-btn active" onclick="filterMovies('all', 'awards')">Todas</button>
-  <button class="filter-btn" onclick="filterMovies('oscar', 'awards')">Oscar</button>
-  <button class="filter-btn" onclick="filterMovies('globes', 'awards')">Golden Globes</button>
-  <button class="filter-btn" onclick="filterMovies('cannes', 'awards')">Cannes</button>
-  <button class="filter-btn" onclick="filterMovies('venice', 'awards')">Venecia</button>
-  <button class="filter-btn" onclick="filterMovies('berlin', 'awards')">Berlin</button>
-  <button class="filter-btn" onclick="filterMovies('tiff', 'awards')">TIFF</button>
-  <button class="filter-btn" onclick="filterMovies('top', 'awards')">Top Rated (90%+)</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all', 'awards')">Todas</button>
+  <button class="filter-btn" data-tag="oscar" onclick="filterMovies('oscar', 'awards')">Oscar</button>
+  <button class="filter-btn" data-tag="globes" onclick="filterMovies('globes', 'awards')">Golden Globes</button>
+  <button class="filter-btn" data-tag="cannes" onclick="filterMovies('cannes', 'awards')">Cannes</button>
+  <button class="filter-btn" data-tag="venice" onclick="filterMovies('venice', 'awards')">Venecia</button>
+  <button class="filter-btn" data-tag="berlin" onclick="filterMovies('berlin', 'awards')">Berlin</button>
+  <button class="filter-btn" data-tag="tiff" onclick="filterMovies('tiff', 'awards')">TIFF</button>
+  <button class="filter-btn" data-tag="top" onclick="filterMovies('top', 'awards')">Top Rated (90%+)</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-awards" onchange="filterMovies(getActiveTag('awards'), 'awards')"></select>
   <label>Ordenar por:</label>
   <select onchange="sortMovies(this.value, 'moviesGrid')">
     <option value="rt-desc">Rotten Tomatoes &#8595;</option>
@@ -513,13 +520,15 @@
 </div>
 
 <div class="filters" id="latino-filters">
-  <button class="filter-btn active" onclick="filterMovies('all', 'latino')">Todas</button>
-  <button class="filter-btn" onclick="filterMovies('goya', 'latino')">Goya (Espana)</button>
-  <button class="filter-btn" onclick="filterMovies('ariel', 'latino')">Ariel (Mexico)</button>
-  <button class="filter-btn" onclick="filterMovies('platino', 'latino')">Platino (Iberoamerica)</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all', 'latino')">Todas</button>
+  <button class="filter-btn" data-tag="goya" onclick="filterMovies('goya', 'latino')">Goya (Espana)</button>
+  <button class="filter-btn" data-tag="ariel" onclick="filterMovies('ariel', 'latino')">Ariel (Mexico)</button>
+  <button class="filter-btn" data-tag="platino" onclick="filterMovies('platino', 'latino')">Platino (Iberoamerica)</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-latino" onchange="filterMovies(getActiveTag('latino'), 'latino')"></select>
   <label>Ordenar por:</label>
   <select onchange="sortMovies(this.value, 'latinoGrid')">
     <option value="combined-desc">Score Combinado &#8595;</option>
@@ -543,20 +552,22 @@
 </div>
 
 <div class="filters" id="chingonas-filters">
-  <button class="filter-btn active" onclick="filterMovies('all','chingonas')">Todas</button>
-  <button class="filter-btn" onclick="filterMovies('scifi','chingonas')">Sci-Fi</button>
-  <button class="filter-btn" onclick="filterMovies('comedy','chingonas')">Comedia</button>
-  <button class="filter-btn" onclick="filterMovies('drama','chingonas')">Drama</button>
-  <button class="filter-btn" onclick="filterMovies('horror','chingonas')">Horror</button>
-  <button class="filter-btn" onclick="filterMovies('thriller','chingonas')">Thriller</button>
-  <button class="filter-btn" onclick="filterMovies('animation','chingonas')">Animacion</button>
-  <button class="filter-btn" onclick="filterMovies('action','chingonas')">Accion</button>
-  <button class="filter-btn" onclick="filterMovies('romance','chingonas')">Romance</button>
-  <button class="filter-btn" onclick="filterMovies('documentary','chingonas')">Documental</button>
-  <button class="filter-btn" onclick="filterMovies('top','chingonas')">90%+ RT</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all','chingonas')">Todas</button>
+  <button class="filter-btn" data-tag="scifi" onclick="filterMovies('scifi','chingonas')">Sci-Fi</button>
+  <button class="filter-btn" data-tag="comedy" onclick="filterMovies('comedy','chingonas')">Comedia</button>
+  <button class="filter-btn" data-tag="drama" onclick="filterMovies('drama','chingonas')">Drama</button>
+  <button class="filter-btn" data-tag="horror" onclick="filterMovies('horror','chingonas')">Horror</button>
+  <button class="filter-btn" data-tag="thriller" onclick="filterMovies('thriller','chingonas')">Thriller</button>
+  <button class="filter-btn" data-tag="animation" onclick="filterMovies('animation','chingonas')">Animacion</button>
+  <button class="filter-btn" data-tag="action" onclick="filterMovies('action','chingonas')">Accion</button>
+  <button class="filter-btn" data-tag="romance" onclick="filterMovies('romance','chingonas')">Romance</button>
+  <button class="filter-btn" data-tag="documentary" onclick="filterMovies('documentary','chingonas')">Documental</button>
+  <button class="filter-btn" data-tag="top" onclick="filterMovies('top','chingonas')">90%+ RT</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-chingonas" onchange="filterMovies(getActiveTag('chingonas'), 'chingonas')"></select>
   <label>Ordenar por:</label>
   <select onchange="sortMovies(this.value, 'chingonasGrid')">
     <option value="combined-desc">Score Combinado &#8595;</option>
@@ -579,14 +590,16 @@
 </div>
 
 <div class="filters" id="discover-filters">
-  <button class="filter-btn active" onclick="filterMovies('all','discover')">Todas</button>
-  <button class="filter-btn" onclick="filterMovies('gem','discover')">Joyas Escondidas</button>
-  <button class="filter-btn" onclick="filterMovies('asia','discover')">Cine de Asia</button>
-  <button class="filter-btn" onclick="filterMovies('world','discover')">Cine del Mundo</button>
-  <button class="filter-btn" onclick="filterMovies('top','discover')">90%+ RT</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all','discover')">Todas</button>
+  <button class="filter-btn" data-tag="gem" onclick="filterMovies('gem','discover')">Joyas Escondidas</button>
+  <button class="filter-btn" data-tag="asia" onclick="filterMovies('asia','discover')">Cine de Asia</button>
+  <button class="filter-btn" data-tag="world" onclick="filterMovies('world','discover')">Cine del Mundo</button>
+  <button class="filter-btn" data-tag="top" onclick="filterMovies('top','discover')">90%+ RT</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-discover" onchange="filterMovies(getActiveTag('discover'), 'discover')"></select>
   <span style="color:#555; font-size:0.85em;">Ordenar:</span>
   <button class="sort-btn" onclick="sortMovies('combined-desc','discoverGrid')">Mejor Rating</button>
   <button class="sort-btn" onclick="sortMovies('rt-desc','discoverGrid')">RT %</button>
@@ -607,14 +620,16 @@
 </div>
 
 <div class="filters" id="studios-filters">
-  <button class="filter-btn active" onclick="filterMovies('all','studios')">Todos</button>
-  <button class="filter-btn" onclick="filterMovies('a24','studios')">A24</button>
-  <button class="filter-btn" onclick="filterMovies('neon','studios')">NEON</button>
-  <button class="filter-btn" onclick="filterMovies('ghibli','studios')">Studio Ghibli</button>
-  <button class="filter-btn" onclick="filterMovies('top','studios')">90%+ RT</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all','studios')">Todos</button>
+  <button class="filter-btn" data-tag="a24" onclick="filterMovies('a24','studios')">A24</button>
+  <button class="filter-btn" data-tag="neon" onclick="filterMovies('neon','studios')">NEON</button>
+  <button class="filter-btn" data-tag="ghibli" onclick="filterMovies('ghibli','studios')">Studio Ghibli</button>
+  <button class="filter-btn" data-tag="top" onclick="filterMovies('top','studios')">90%+ RT</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-studios" onchange="filterMovies(getActiveTag('studios'), 'studios')"></select>
   <span style="color:#555; font-size:0.85em;">Ordenar:</span>
   <button class="sort-btn" onclick="sortMovies('combined-desc','studiosGrid')">Mejor Rating</button>
   <button class="sort-btn" onclick="sortMovies('rt-desc','studiosGrid')">RT %</button>
@@ -635,13 +650,15 @@
 </div>
 
 <div class="filters" id="cinelatam-filters">
-  <button class="filter-btn active" onclick="filterMovies('all','cinelatam')">Todas</button>
-  <button class="filter-btn" onclick="filterMovies('espanol','cinelatam')">España</button>
-  <button class="filter-btn" onclick="filterMovies('mexicano','cinelatam')">México</button>
-  <button class="filter-btn" onclick="filterMovies('top','cinelatam')">Top Rated</button>
+  <button class="filter-btn active" data-tag="all" onclick="filterMovies('all','cinelatam')">Todas</button>
+  <button class="filter-btn" data-tag="espanol" onclick="filterMovies('espanol','cinelatam')">España</button>
+  <button class="filter-btn" data-tag="mexicano" onclick="filterMovies('mexicano','cinelatam')">México</button>
+  <button class="filter-btn" data-tag="top" onclick="filterMovies('top','cinelatam')">Top Rated</button>
 </div>
 
 <div class="sort-bar">
+  <label>Año:</label>
+  <select id="year-filter-cinelatam" onchange="filterMovies(getActiveTag('cinelatam'), 'cinelatam')"></select>
   <span style="color:#555; font-size:0.85em;">Ordenar:</span>
   <button class="sort-btn" onclick="sortMovies('combined-desc','cinelatamGrid')">Mejor Rating</button>
   <button class="sort-btn" onclick="sortMovies('rt-desc','cinelatamGrid')">RT %</button>
@@ -1044,6 +1061,98 @@ const movies = [
     review: "Familia catalana de agricultores de melocotones enfrenta la modernizacion. Oso de Oro de Berlin. Cine naturalista y conmovedor."
   },
   {
+    title: "All Quiet on the Western Front",
+    director: "Edward Berger",
+    year: 2022,
+    genre: "Action, Drama, War",
+    rt: 90, imdb: 7.8,
+    poster: "posters/all-quiet-on-the-western-front-2022.jpg",
+    awards: [{ label: "4 Oscars", type: "oscar" },{ label: "Oscar Best International Film", type: "oscar" },{ label: "BAFTA Best Film", type: "oscar" }],
+    tags: ["oscar", "top"],
+    review: "Remake alemana devastadora de la novela anti-belica. 4 Oscars incluyendo Mejor Pelicula Internacional. Berger filma la brutalidad de la guerra sin piedad.",
+    rec: true
+  },
+  {
+    title: "The Whale",
+    director: "Darren Aronofsky",
+    year: 2022,
+    genre: "Drama",
+    rt: 65, imdb: 7.7,
+    poster: "posters/the-whale-2022.jpg",
+    awards: [{ label: "Oscar Best Actor", type: "oscar" },{ label: "Oscar Nominada Best Picture", type: "nom" }],
+    tags: ["oscar"],
+    review: "Brendan Fraser gano el Oscar con una transformacion fisica y emocional extraordinaria. Drama sobre un profesor recluso que intenta reconectar con su hija."
+  },
+  {
+    title: "Tar",
+    director: "Todd Field",
+    year: 2022,
+    genre: "Drama, Music",
+    rt: 91, imdb: 7.3,
+    poster: "posters/tar-2022.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Nominada Best Actress", type: "nom" },{ label: "Venice FIPRESCI", type: "venice" }],
+    tags: ["oscar", "venice", "top"],
+    review: "Cate Blanchett en la actuacion del siglo como una directora de orquesta cuyo poder se desmorona. Field regresa despues de 16 anos con una obra maestra polarizante.",
+    rec: true
+  },
+  {
+    title: "Women Talking",
+    director: "Sarah Polley",
+    year: 2022,
+    genre: "Drama",
+    rt: 88, imdb: 6.7,
+    poster: "posters/women-talking-2022.jpg",
+    awards: [{ label: "Oscar Best Adapted Screenplay", type: "oscar" },{ label: "Oscar Nominada Best Picture", type: "nom" }],
+    tags: ["oscar"],
+    review: "Mujeres de una colonia menonita debaten que hacer tras anos de abuso. Polley gano el Oscar a Mejor Guion Adaptado. Poderosa y necesaria."
+  },
+  {
+    title: "Elvis",
+    director: "Baz Luhrmann",
+    year: 2022,
+    genre: "Biography, Drama, Music",
+    rt: 78, imdb: 7.3,
+    poster: "posters/elvis-2022.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Nominada Best Actor", type: "nom" },{ label: "Golden Globe Nominada", type: "globes" }],
+    tags: ["oscar", "globes"],
+    review: "Austin Butler SE CONVIERTE en Elvis Presley con una energia electrizante. Luhrmann crea un espectaculo visual y musical deslumbrante. 8 nominaciones al Oscar."
+  },
+  {
+    title: "Close",
+    director: "Lukas Dhont",
+    year: 2022,
+    genre: "Drama",
+    rt: 94, imdb: 7.6,
+    poster: "posters/close-2022.jpg",
+    awards: [{ label: "Grand Prix Cannes 2022", type: "cannes" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["cannes", "oscar", "top"],
+    review: "Dos ninos inseparables enfrentan la presion social que destruye su amistad. Grand Prix de Cannes. Dhont crea un drama devastadoramente emotivo.",
+    rec: true
+  },
+  {
+    title: "EO",
+    director: "Jerzy Skolimowski",
+    year: 2022,
+    genre: "Drama",
+    rt: 97, imdb: 6.9,
+    poster: "posters/eo-2022.jpg",
+    awards: [{ label: "Jury Prize Cannes 2022", type: "cannes" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["cannes", "oscar", "top"],
+    review: "Un burro viaja por Europa encontrando crueldad y bondad humana. Skolimowski a sus 84 anos crea una obra visual radical. Premio del Jurado en Cannes.",
+    rec: true
+  },
+  {
+    title: "No Bears",
+    director: "Jafar Panahi",
+    year: 2022,
+    genre: "Drama",
+    rt: 93, imdb: 6.8,
+    poster: "posters/no-bears-2022.jpg",
+    awards: [{ label: "Venice Special Jury Prize", type: "venice" }],
+    tags: ["venice", "top"],
+    review: "Panahi dirige desde su arresto domiciliario una reflexion sobre fronteras, miedo y libertad artistica. Premio Especial del Jurado en Venecia. Cine de resistencia."
+  },
+  {
     title: "Oppenheimer",
     director: "Christopher Nolan",
     year: 2023,
@@ -1113,6 +1222,133 @@ const movies = [
     review: "Jeffrey Wright en una satira brillante sobre raza e identidad. TIFF People's Choice y Oscar a Mejor Guion. Ingeniosa y con corazon.",
     rec: true
   },
+  {
+    title: "Killers of the Flower Moon",
+    director: "Martin Scorsese",
+    year: 2023,
+    genre: "Crime, Drama, History",
+    rt: 93, imdb: 7.6,
+    poster: "posters/killers-of-the-flower-moon-2023.jpg",
+    awards: [{ label: "10 Oscar Nominations", type: "nom" },{ label: "Cannes Premiere 2023", type: "cannes" }],
+    tags: ["oscar", "cannes"],
+    review: "Scorsese explora el genocidio de los Osage con DiCaprio y De Niro. 3.5 horas de tension implacable. 10 nominaciones al Oscar. Lily Gladstone hace historia."
+  },
+  {
+    title: "Past Lives",
+    director: "Celine Song",
+    year: 2023,
+    genre: "Drama, Romance",
+    rt: 96, imdb: 7.8,
+    poster: "posters/past-lives-2023.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Nominada Best Screenplay", type: "nom" }],
+    tags: ["oscar"],
+    review: "Un romance que abarca decadas entre Corea y Nueva York. Delicada y devastadora sobre las vidas que pudimos haber vivido. Debut perfecto de Celine Song.",
+    rec: true
+  },
+  {
+    title: "The Holdovers",
+    director: "Alexander Payne",
+    year: 2023,
+    genre: "Comedy, Drama",
+    rt: 93, imdb: 7.9,
+    poster: "posters/the-holdovers-2023.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Best Supporting Actress", type: "oscar" },{ label: "Golden Globe Nominada", type: "globes" }],
+    tags: ["oscar", "globes"],
+    review: "Paul Giamatti como un profesor gruñon atrapado en Navidad con un alumno. Da'Vine Joy Randolph gano el Oscar. Humor y humanidad en estado puro.",
+    rec: true
+  },
+  {
+    title: "Maestro",
+    director: "Bradley Cooper",
+    year: 2023,
+    genre: "Biography, Drama, Music",
+    rt: 80, imdb: 6.6,
+    poster: "posters/maestro-2023.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "7 Oscar Nominations", type: "oscar" },{ label: "Venice Premiere", type: "venice" }],
+    tags: ["oscar", "venice"],
+    review: "Bradley Cooper dirige y protagoniza como Leonard Bernstein. 7 nominaciones al Oscar. Ambiciosa biografia musical con Carey Mulligan espectacular."
+  },
+  {
+    title: "Fallen Leaves",
+    director: "Aki Kaurismaki",
+    year: 2023,
+    genre: "Comedy, Drama, Romance",
+    rt: 97, imdb: 7.3,
+    poster: "posters/fallen-leaves-2023.jpg",
+    awards: [{ label: "Jury Prize Cannes 2023", type: "cannes" }],
+    tags: ["cannes", "top"],
+    review: "Dos solitarios se encuentran en Helsinki. Kaurismaki regresa con humor seco y ternura minimalista. Premio del Jurado en Cannes. 97% en RT.",
+    rec: true
+  },
+  {
+    title: "Perfect Days",
+    director: "Wim Wenders",
+    year: 2023,
+    genre: "Drama",
+    rt: 96, imdb: 7.9,
+    poster: "posters/perfect-days-2023.jpg",
+    awards: [{ label: "Best Actor Cannes 2023", type: "cannes" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["cannes", "oscar", "top"],
+    review: "Un conserje de banos publicos en Tokio encuentra belleza en lo cotidiano. Koji Yakusho gano Mejor Actor en Cannes. La pelicula mas zen del ano.",
+    rec: true
+  },
+  {
+    title: "Io Capitano",
+    director: "Matteo Garrone",
+    year: 2023,
+    genre: "Adventure, Drama",
+    rt: 88, imdb: 7.4,
+    poster: "posters/io-capitano-2023.jpg",
+    awards: [{ label: "Venice Grand Jury Prize", type: "venice" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["venice", "oscar"],
+    review: "Dos adolescentes senegaleses emprenden el viaje hacia Europa. Garrone filma la odisea migratoria con humanismo y belleza epica. Gran Premio del Jurado en Venecia."
+  },
+  {
+    title: "May December",
+    director: "Todd Haynes",
+    year: 2023,
+    genre: "Comedy, Drama",
+    rt: 91, imdb: 6.7,
+    poster: "posters/may-december-2023.jpg",
+    awards: [{ label: "Cannes Competition 2023", type: "cannes" },{ label: "Golden Globe Nominada", type: "globes" }],
+    tags: ["cannes", "globes"],
+    review: "Natalie Portman investiga a Julianne Moore para un papel sobre su escandalo real. Haynes mezcla melodrama con critica social. Incomoda y fascinante."
+  },
+  {
+    title: "The Boy and the Heron",
+    director: "Hayao Miyazaki",
+    year: 2023,
+    genre: "Animation, Adventure, Drama",
+    rt: 96, imdb: 7.3,
+    poster: "posters/the-boy-and-the-heron-2023.jpg",
+    awards: [{ label: "Oscar Best Animated Feature", type: "oscar" },{ label: "Golden Globe Best Animated", type: "globes" }],
+    tags: ["oscar", "globes"],
+    review: "Miyazaki regresa a sus 82 anos. Un nino sigue a una garza a un mundo fantastico. Oscar a Mejor Pelicula Animada. El adios definitivo del maestro.",
+    rec: true
+  },
+  {
+    title: "Monster",
+    director: "Hirokazu Kore-eda",
+    year: 2023,
+    genre: "Drama, Mystery",
+    rt: 96, imdb: 7.8,
+    poster: "posters/monster-2023.jpg",
+    awards: [{ label: "Best Screenplay Cannes 2023", type: "cannes" },{ label: "Queer Palm Cannes", type: "cannes" }],
+    tags: ["cannes", "top"],
+    review: "Kore-eda construye un misterio desde tres perspectivas. Sakamoto compuso su ultima banda sonora. Premio al Mejor Guion y Queer Palm en Cannes.",
+    rec: true
+  },
+  {
+    title: "The Teachers' Lounge",
+    director: "Ilker Catak",
+    year: 2023,
+    genre: "Drama, Mystery",
+    rt: 98, imdb: 7.5,
+    poster: "posters/the-teachers-lounge-2023.jpg",
+    awards: [{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["oscar"],
+    review: "Una profesora idealista investiga un robo en su escuela y desata un thriller moral. 98% en RT. Nominada al Oscar a Mejor Pelicula Internacional."
+  },
   // 2024 Winners
   {
     title: "The Room Next Door",
@@ -1146,6 +1382,121 @@ const movies = [
     awards: [{ label: "TIFF People's Choice 2024", type: "tiff" }],
     tags: ["tiff"],
     review: "Tom Hiddleston en esta adaptacion de Stephen King. TIFF People's Choice. Flanagan crea una meditacion hermosa sobre la vida."
+  },
+  {
+    title: "Conclave",
+    director: "Edward Berger",
+    year: 2024,
+    genre: "Drama, Mystery, Thriller",
+    rt: 92, imdb: 7.3,
+    poster: "posters/conclave-2024.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "8 Oscar Nominations", type: "oscar" }],
+    tags: ["oscar", "top"],
+    review: "Ralph Fiennes lidera un thriller vaticano electrizante sobre la eleccion de un nuevo Papa. 8 nominaciones al Oscar. Berger confirma su talento tras Sin novedad en el frente.",
+    rec: true
+  },
+  {
+    title: "A Complete Unknown",
+    director: "James Mangold",
+    year: 2024,
+    genre: "Biography, Drama, Music",
+    rt: 92, imdb: 7.6,
+    poster: "posters/a-complete-unknown-2024.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "8 Oscar Nominations", type: "oscar" },{ label: "Golden Globe Nominada", type: "globes" }],
+    tags: ["oscar", "globes", "top"],
+    review: "Timothee Chalamet desaparece en Bob Dylan joven con una interpretacion asombrosa. Mangold captura la revolucion folk de los 60s. 8 nominaciones al Oscar."
+  },
+  {
+    title: "Dune: Part Two",
+    director: "Denis Villeneuve",
+    year: 2024,
+    genre: "Action, Adventure, Sci-Fi",
+    rt: 92, imdb: 8.5,
+    poster: "posters/dune-part-two-2024.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "5 Oscar Nominations", type: "oscar" }],
+    tags: ["oscar", "top"],
+    review: "Villeneuve completa su vision epica de Dune. 8.5 IMDb, la pelicula de sci-fi mejor valorada en decadas. Zendaya y Chalamet en una aventura monumental.",
+    rec: true
+  },
+  {
+    title: "The Substance",
+    director: "Coralie Fargeat",
+    year: 2024,
+    genre: "Horror, Sci-Fi",
+    rt: 89, imdb: 7.3,
+    poster: "posters/the-substance-2024.jpg",
+    awards: [{ label: "Best Screenplay Cannes 2024", type: "cannes" },{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "5 Oscar Nominations", type: "oscar" }],
+    tags: ["cannes", "oscar"],
+    review: "Demi Moore en un body horror feminista brutal sobre los estandares de belleza. Mejor Guion en Cannes. 5 nominaciones al Oscar. Visceral y sin piedad.",
+    rec: true
+  },
+  {
+    title: "Wicked",
+    director: "Jon M. Chu",
+    year: 2024,
+    genre: "Fantasy, Musical",
+    rt: 89, imdb: 7.5,
+    poster: "posters/wicked-2024.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Golden Globe Nominada", type: "globes" }],
+    tags: ["oscar", "globes"],
+    review: "Cynthia Erivo y Ariana Grande dan vida al musical de Broadway con escala epica. Fenomeno cultural que recaudo mas de $600M. Musical espectacular."
+  },
+  {
+    title: "Nickel Boys",
+    director: "RaMell Ross",
+    year: 2024,
+    genre: "Drama",
+    rt: 97, imdb: 6.6,
+    poster: "posters/nickel-boys-2024.jpg",
+    awards: [{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Nominada Adapted Screenplay", type: "nom" }],
+    tags: ["oscar", "top"],
+    review: "Ross adapta la novela de Colson Whitehead con una tecnica visual revolucionaria en primera persona. 97% en RT. Cine radical y conmovedor sobre la injusticia racial."
+  },
+  {
+    title: "I'm Still Here",
+    director: "Walter Salles",
+    year: 2024,
+    genre: "Biography, Drama, History",
+    rt: 95, imdb: 7.8,
+    poster: "posters/im-still-here-2024.jpg",
+    awards: [{ label: "Best Screenplay Venice 2024", type: "venice" },{ label: "Oscar Nominada Best Picture", type: "nom" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["venice", "oscar", "top"],
+    review: "Fernanda Torres brilla en este drama sobre una familia brasilena durante la dictadura militar. Salles regresa en gran forma. Mejor Guion en Venecia.",
+    rec: true
+  },
+  {
+    title: "A Real Pain",
+    director: "Jesse Eisenberg",
+    year: 2024,
+    genre: "Comedy, Drama",
+    rt: 91, imdb: 7.2,
+    poster: "posters/a-real-pain-2024.jpg",
+    awards: [{ label: "Oscar Best Supporting Actor", type: "oscar" },{ label: "Oscar Nominada Screenplay", type: "nom" }],
+    tags: ["oscar", "top"],
+    review: "Kieran Culkin gano el Oscar de Apoyo en esta tragicomedia sobre dos primos en un tour por el Holocausto en Polonia. Eisenberg escribe y dirige con sensibilidad."
+  },
+  {
+    title: "The Seed of the Sacred Fig",
+    director: "Mohammad Rasoulof",
+    year: 2024,
+    genre: "Drama, Thriller",
+    rt: 99, imdb: 7.8,
+    poster: "posters/the-seed-of-the-sacred-fig-2024.jpg",
+    awards: [{ label: "Special Prize Cannes 2024", type: "cannes" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["cannes", "oscar", "top"],
+    review: "Rasoulof escapo de Iran para estrenar esta denuncia valiente del regimen. 99% en RT. Premio Especial en Cannes. Cine como acto de resistencia.",
+    rec: true
+  },
+  {
+    title: "Vermiglio",
+    director: "Maura Delpero",
+    year: 2024,
+    genre: "Drama, Romance, War",
+    rt: 96, imdb: 7.0,
+    poster: "posters/vermiglio-2024.jpg",
+    awards: [{ label: "Venice Grand Jury Prize 2024", type: "venice" },{ label: "Oscar Nominada International", type: "nom" }],
+    tags: ["venice", "oscar", "top"],
+    review: "Un soldado llega a un pueblo alpino italiano al final de la WWII y transforma una familia. Gran Premio del Jurado en Venecia. Luminosa y poetica."
   },
   // Notable Nominees
   {
@@ -1240,7 +1591,1743 @@ const movies = [
     tags: ["oscar"],
     review: "Periodistas documentan el horror del sitio ruso a Mariupol en tiempo real. Oscar a Mejor Documental. El documento de guerra mas importante del siglo.",
     rec: true
-  }
+  },
+    // ---- 2021 ----
+    {
+      title: "Dune",
+      director: "Denis Villeneuve",
+      year: 2021,
+      genre: "Action, Adventure, Sci-Fi",
+      rt: 83,
+      imdb: 8.0,
+      poster: "posters/dune-2021.jpg",
+      awards: [{label:"6 Oscars",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Villeneuve adapta el clasico de Frank Herbert con una escala epica sin precedentes. Timothee Chalamet lidera un elenco estelar. 6 Oscars tecnicos.",
+      rec: true
+    },
+    {
+      title: "King Richard",
+      director: "Reinaldo Marcus Green",
+      year: 2021,
+      genre: "Biography, Drama, Sport",
+      rt: 90,
+      imdb: 7.5,
+      poster: "posters/king-richard-2021.jpg",
+      awards: [{label:"Oscar Best Actor",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Will Smith gano el Oscar como el padre de Venus y Serena Williams. Drama deportivo inspirador sobre fe, familia y determinacion inquebrantable."
+    },
+    {
+      title: "Licorice Pizza",
+      director: "Paul Thomas Anderson",
+      year: 2021,
+      genre: "Comedy, Drama, Romance",
+      rt: 91,
+      imdb: 7.4,
+      poster: "posters/licorice-pizza-2021.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Oscar Nominada Best Director",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "PTA captura el romance adolescente en el Valle de San Fernando de los 70s. Alana Haim y Cooper Hoffman debutan con una quimica irresistible.",
+      rec: true
+    },
+    {
+      title: "Don't Look Up",
+      director: "Adam McKay",
+      year: 2021,
+      genre: "Comedy, Drama, Sci-Fi",
+      rt: 56,
+      imdb: 7.2,
+      poster: "posters/don-t-look-up-2021.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "DiCaprio y Lawrence como cientificos que intentan alertar al mundo de un cometa. Satira politica mordaz sobre la indiferencia ante la crisis climatica."
+    },
+    {
+      title: "Nightmare Alley",
+      director: "Guillermo del Toro",
+      year: 2021,
+      genre: "Crime, Drama, Mystery",
+      rt: 80,
+      imdb: 7.0,
+      poster: "posters/nightmare-alley-2021.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Bradley Cooper como un estafador que manipula a la elite con lectura en frio. Del Toro crea un noir elegante y oscuro. Cate Blanchett magnifica."
+    },
+    {
+      title: "A Hero",
+      director: "Asghar Farhadi",
+      year: 2021,
+      genre: "Drama",
+      rt: 95,
+      imdb: 7.3,
+      poster: "posters/a-hero-2021.jpg",
+      awards: [{label:"Grand Prix Cannes 2021",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Un hombre intenta saldar su deuda para salir de prision pero las redes sociales complican todo. Farhadi gano el Grand Prix de Cannes con un dilema moral fascinante.",
+      rec: true
+    },
+
+    // ---- 2020 ----
+    {
+      title: "The Father",
+      director: "Florian Zeller",
+      year: 2020,
+      genre: "Drama, Mystery",
+      rt: 98,
+      imdb: 8.2,
+      poster: "posters/the-father-2020.jpg",
+      awards: [{label:"Oscar Best Actor",type:"oscar"},{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Anthony Hopkins gano el Oscar a los 83 anos con una actuacion devastadora como un hombre con demencia. Zeller crea una experiencia inmersiva y aterradora.",
+      rec: true
+    },
+    {
+      title: "Minari",
+      director: "Lee Isaac Chung",
+      year: 2020,
+      genre: "Drama",
+      rt: 98,
+      imdb: 7.5,
+      poster: "posters/minari-2020.jpg",
+      awards: [{label:"Oscar Best Supporting Actress",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Best Foreign Language",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Una familia coreana busca el sueno americano en Arkansas. Youn Yuh-jung gano el Oscar. Intima, poetica y profundamente conmovedora.",
+      rec: true
+    },
+    {
+      title: "Promising Young Woman",
+      director: "Emerald Fennell",
+      year: 2020,
+      genre: "Crime, Drama, Thriller",
+      rt: 90,
+      imdb: 7.5,
+      poster: "posters/promising-young-woman-2020.jpg",
+      awards: [{label:"Oscar Best Original Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Carey Mulligan como una mujer que venga a las victimas de abuso sexual. Fennell debuta con un thriller feminista audaz que gano Oscar a Mejor Guion."
+    },
+    {
+      title: "Sound of Metal",
+      director: "Darius Marder",
+      year: 2020,
+      genre: "Drama, Music",
+      rt: 97,
+      imdb: 7.8,
+      poster: "posters/sound-of-metal-2020.jpg",
+      awards: [{label:"Oscar Best Sound",type:"oscar"},{label:"Oscar Best Film Editing",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Riz Ahmed como un baterista que pierde la audicion. 2 Oscars. La experiencia sonora mas innovadora del cine reciente. Demoledora.",
+      rec: true
+    },
+    {
+      title: "Judas and the Black Messiah",
+      director: "Shaka King",
+      year: 2020,
+      genre: "Biography, Drama, History",
+      rt: 96,
+      imdb: 7.5,
+      poster: "posters/judas-and-the-black-messiah-2020.jpg",
+      awards: [{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Oscar Best Original Song",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Daniel Kaluuya gano el Oscar como Fred Hampton. King recrea la traicion del FBI contra las Panteras Negras con urgencia y poder.",
+      rec: true
+    },
+    {
+      title: "The Trial of the Chicago 7",
+      director: "Aaron Sorkin",
+      year: 2020,
+      genre: "Drama, History, Thriller",
+      rt: 89,
+      imdb: 7.7,
+      poster: "posters/the-trial-of-the-chicago-7-2020.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Nominada Drama",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Sorkin recrea el juicio mas absurdo de la historia americana. Elenco estelar incluyendo Sacha Baron Cohen y Mark Rylance. Guion afilado como navaja."
+    },
+    {
+      title: "Mank",
+      director: "David Fincher",
+      year: 2020,
+      genre: "Biography, Comedy, Drama",
+      rt: 83,
+      imdb: 6.8,
+      poster: "posters/mank-2020.jpg",
+      awards: [{label:"Oscar Best Cinematography",type:"oscar"},{label:"Oscar Best Production Design",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Gary Oldman como Herman Mankiewicz escribiendo Citizen Kane. Fincher recrea el Hollywood de los 30s en blanco y negro deslumbrante. 2 Oscars."
+    },
+    {
+      title: "Another Round",
+      director: "Thomas Vinterberg",
+      year: 2020,
+      genre: "Comedy, Drama",
+      rt: 93,
+      imdb: 7.7,
+      poster: "posters/another-round-2020.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Mads Mikkelsen y tres profesores experimentan con mantener un nivel constante de alcohol. Oscar a Mejor Pelicula Internacional. El final es pura euforia.",
+      rec: true
+    },
+    {
+      title: "There Is No Evil",
+      director: "Mohammad Rasoulof",
+      year: 2020,
+      genre: "Drama",
+      rt: 93,
+      imdb: 7.3,
+      poster: "posters/there-is-no-evil-2020.jpg",
+      awards: [{label:"Golden Bear Berlin 2020",type:"berlin"}],
+      tags: ["berlin","top"],
+      review: "Cuatro historias sobre la pena de muerte en Iran. Rasoulof gano el Oso de Oro de Berlin sin poder asistir. Cine de resistencia imprescindible."
+    },
+    {
+      title: "Quo Vadis, Aida?",
+      director: "Jasmila Zbanic",
+      year: 2020,
+      genre: "Drama, History, War",
+      rt: 100,
+      imdb: 8.0,
+      poster: "posters/quo-vadis-aida-2020.jpg",
+      awards: [{label:"Oscar Nominada International",type:"nom"},{label:"Venice Nominada",type:"venice"}],
+      tags: ["oscar","venice","top"],
+      review: "100% en RT. La masacre de Srebrenica vista desde una traductora de la ONU. Zbanic crea el testimonio de guerra mas urgente y desgarrador.",
+      rec: true
+    },
+
+    // ---- 2019 ----
+    {
+      title: "Parasite",
+      director: "Bong Joon-ho",
+      year: 2019,
+      genre: "Comedy, Drama, Thriller",
+      rt: 98,
+      imdb: 8.5,
+      poster: "posters/parasite-2019.jpg",
+      awards: [{label:"Oscar Best Picture 2020",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Screenplay",type:"oscar"},{label:"Oscar Best International",type:"oscar"},{label:"Palme d'Or Cannes 2019",type:"cannes"}],
+      tags: ["oscar","cannes","top"],
+      review: "La familia Kim infiltra la mansion de los Park. 4 Oscars y Palme d'Or. Bong Joon-ho hizo historia como primera pelicula no inglesa en ganar Best Picture.",
+      rec: true
+    },
+    {
+      title: "1917",
+      director: "Sam Mendes",
+      year: 2019,
+      genre: "Drama, War",
+      rt: 89,
+      imdb: 8.3,
+      poster: "posters/1917-2019.jpg",
+      awards: [{label:"Golden Globe Best Drama 2020",type:"globes"},{label:"3 Oscars",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","globes"],
+      review: "Mendes filma la WWI como un plano secuencia continuo. 3 Oscars. La experiencia mas inmersiva del cine belico. Deakins gano su segundo Oscar.",
+      rec: true
+    },
+    {
+      title: "Joker",
+      director: "Todd Phillips",
+      year: 2019,
+      genre: "Crime, Drama, Thriller",
+      rt: 68,
+      imdb: 8.4,
+      poster: "posters/joker-2019.jpg",
+      awards: [{label:"Venice Golden Lion 2019",type:"venice"},{label:"Oscar Best Actor",type:"oscar"},{label:"Oscar Best Score",type:"oscar"}],
+      tags: ["venice","oscar"],
+      review: "Joaquin Phoenix SE CONVIERTE en Arthur Fleck con una actuacion que lo consume todo. Leon de Oro de Venecia y Oscar. Perturbadora y fascinante.",
+      rec: true
+    },
+    {
+      title: "Once Upon a Time in Hollywood",
+      director: "Quentin Tarantino",
+      year: 2019,
+      genre: "Comedy, Drama",
+      rt: 85,
+      imdb: 7.6,
+      poster: "posters/once-upon-a-time-in-hollywood-2019.jpg",
+      awards: [{label:"Oscar Best Production Design",type:"oscar"},{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "DiCaprio y Pitt en el Hollywood de 1969. Tarantino crea una carta de amor al cine con un final inolvidable. Brad Pitt gano el Oscar."
+    },
+    {
+      title: "Marriage Story",
+      director: "Noah Baumbach",
+      year: 2019,
+      genre: "Comedy, Drama, Romance",
+      rt: 94,
+      imdb: 7.9,
+      poster: "posters/marriage-story-2019.jpg",
+      awards: [{label:"Oscar Best Supporting Actress",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Nominada",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Scarlett Johansson y Adam Driver en el divorcio mas desgarrador del cine. Laura Dern gano el Oscar. Baumbach escribe con precision quirurgica.",
+      rec: true
+    },
+    {
+      title: "The Irishman",
+      director: "Martin Scorsese",
+      year: 2019,
+      genre: "Biography, Crime, Drama",
+      rt: 95,
+      imdb: 7.8,
+      poster: "posters/the-irishman-2019.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"10 Oscar Nominations",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Scorsese, De Niro, Pacino y Pesci reunidos en esta epica mafiosa de 3.5 horas. 10 nominaciones al Oscar. El maestro cierra un capitulo del cine.",
+      rec: true
+    },
+    {
+      title: "Jojo Rabbit",
+      director: "Taika Waititi",
+      year: 2019,
+      genre: "Comedy, Drama, War",
+      rt: 80,
+      imdb: 7.9,
+      poster: "posters/jojo-rabbit-2019.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Waititi como Hitler imaginario de un nino nazi. Oscar a Mejor Guion Adaptado. Comedia anti-odio que equilibra humor absurdo con momentos devastadores."
+    },
+    {
+      title: "Little Women",
+      director: "Greta Gerwig",
+      year: 2019,
+      genre: "Drama, Romance",
+      rt: 95,
+      imdb: 7.8,
+      poster: "posters/little-women-2019.jpg",
+      awards: [{label:"Oscar Best Costume Design",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Gerwig reinventa el clasico de Louisa May Alcott con Saoirse Ronan y Florence Pugh. La mejor adaptacion de la novela. Vibrante y moderna.",
+      rec: true
+    },
+    {
+      title: "Ford v Ferrari",
+      director: "James Mangold",
+      year: 2019,
+      genre: "Action, Biography, Drama",
+      rt: 92,
+      imdb: 8.1,
+      poster: "posters/ford-v-ferrari-2019.jpg",
+      awards: [{label:"Oscar Best Film Editing",type:"oscar"},{label:"Oscar Best Sound",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Matt Damon y Christian Bale en la carrera de Le Mans 1966. Mangold crea el mejor thriller automovilistico en decadas. 2 Oscars. Adrenalina pura.",
+      rec: true
+    },
+    {
+      title: "Atlantics",
+      director: "Mati Diop",
+      year: 2019,
+      genre: "Drama, Romance, Sci-Fi",
+      rt: 97,
+      imdb: 6.3,
+      poster: "posters/atlantics-2019.jpg",
+      awards: [{label:"Grand Prix Cannes 2019",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Fantasmas de migrantes regresan a Dakar para reclamar justicia. Diop gano el Grand Prix de Cannes con una opera prima hipnotica y fantasmagorica.",
+      rec: true
+    },
+    {
+      title: "Synonyms",
+      director: "Nadav Lapid",
+      year: 2019,
+      genre: "Comedy, Drama",
+      rt: 79,
+      imdb: 6.2,
+      poster: "posters/synonyms-2019.jpg",
+      awards: [{label:"Golden Bear Berlin 2019",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Un israeli intenta reinventarse como frances en Paris. Lapid gano el Oso de Oro con una exploracion visceral de identidad, lenguaje y pertenencia."
+    },
+
+    // ---- 2018 ----
+    {
+      title: "Green Book",
+      director: "Peter Farrelly",
+      year: 2018,
+      genre: "Biography, Comedy, Drama",
+      rt: 77,
+      imdb: 8.2,
+      poster: "posters/green-book-2018.jpg",
+      awards: [{label:"Oscar Best Picture 2019",type:"oscar"},{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Oscar Best Screenplay",type:"oscar"},{label:"Golden Globe Musical/Comedy 2019",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Viggo Mortensen y Mahershala Ali en un road trip por el sur segregado de los 60s. 3 Oscars incluyendo Mejor Pelicula. Controversial pero irresistible.",
+      rec: true
+    },
+    {
+      title: "Roma",
+      director: "Alfonso Cuaron",
+      year: 2018,
+      genre: "Drama",
+      rt: 96,
+      imdb: 7.7,
+      poster: "posters/roma-2018.jpg",
+      awards: [{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Cinematography",type:"oscar"},{label:"Oscar Best International Film",type:"oscar"},{label:"Venice Golden Lion 2018",type:"venice"}],
+      tags: ["oscar","venice","top"],
+      review: "Cuaron recrea su infancia en la Ciudad de Mexico de los 70s. Leon de Oro y 3 Oscars. Yalitza Aparicio conmueve. Una obra maestra autobiografica.",
+      rec: true
+    },
+    {
+      title: "Bohemian Rhapsody",
+      director: "Bryan Singer",
+      year: 2018,
+      genre: "Biography, Drama, Music",
+      rt: 60,
+      imdb: 7.9,
+      poster: "posters/bohemian-rhapsody-2018.jpg",
+      awards: [{label:"Oscar Best Actor",type:"oscar"},{label:"Golden Globe Best Drama 2019",type:"globes"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","globes"],
+      review: "Rami Malek SE CONVIERTE en Freddie Mercury y gano el Oscar. La secuencia de Live Aid es cine puro. 4 Oscars y fenomeno de taquilla mundial."
+    },
+    {
+      title: "The Favourite",
+      director: "Yorgos Lanthimos",
+      year: 2018,
+      genre: "Biography, Comedy, Drama",
+      rt: 93,
+      imdb: 7.5,
+      poster: "posters/the-favourite-2018.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Venice Grand Jury Prize",type:"venice"},{label:"10 Oscar Nominations",type:"oscar"}],
+      tags: ["oscar","venice","top"],
+      review: "Olivia Colman gano el Oscar como la Reina Ana. Lanthimos crea una comedia de poder deliciosamente perversa con Emma Stone y Rachel Weisz.",
+      rec: true
+    },
+    {
+      title: "A Star Is Born",
+      director: "Bradley Cooper",
+      year: 2018,
+      genre: "Drama, Music, Romance",
+      rt: 90,
+      imdb: 7.6,
+      poster: "posters/a-star-is-born-2018.jpg",
+      awards: [{label:"Oscar Best Original Song",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Nominada",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Cooper debuta dirigiendo a Lady Gaga en un romance musical que arrasa. Shallow gano el Oscar. La quimica entre ambos es electrizante."
+    },
+    {
+      title: "BlacKkKlansman",
+      director: "Spike Lee",
+      year: 2018,
+      genre: "Biography, Comedy, Crime",
+      rt: 96,
+      imdb: 7.5,
+      poster: "posters/blackkklansman-2018.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Grand Prix Cannes 2018",type:"cannes"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","cannes","top"],
+      review: "Un detective negro se infiltra en el KKK. Spike Lee gano el Oscar a Mejor Guion y Grand Prix de Cannes. Urgente, furiosa y necesaria.",
+      rec: true
+    },
+    {
+      title: "Black Panther",
+      director: "Ryan Coogler",
+      year: 2018,
+      genre: "Action, Adventure, Sci-Fi",
+      rt: 96,
+      imdb: 7.3,
+      poster: "posters/black-panther-2018.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Primera pelicula de superheroes nominada a Mejor Pelicula. Coogler crea Wakanda con una vision afrofuturista revolucionaria. 3 Oscars. Fenomeno cultural."
+    },
+    {
+      title: "Shoplifters",
+      director: "Hirokazu Kore-eda",
+      year: 2018,
+      genre: "Crime, Drama",
+      rt: 99,
+      imdb: 7.9,
+      poster: "posters/shoplifters-2018.jpg",
+      awards: [{label:"Palme d'Or Cannes 2018",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Una familia de ladrones adopta a una nina abandonada. Kore-eda gano la Palme d'Or con un retrato compasivo de la pobreza. 99% en RT. Imprescindible.",
+      rec: true
+    },
+    {
+      title: "Cold War",
+      director: "Pawel Pawlikowski",
+      year: 2018,
+      genre: "Drama, Music, Romance",
+      rt: 92,
+      imdb: 7.6,
+      poster: "posters/cold-war-2018.jpg",
+      awards: [{label:"Best Director Cannes 2018",type:"cannes"},{label:"Oscar Nominada Director",type:"nom"},{label:"Oscar Nominada International",type:"nom"}],
+      tags: ["cannes","oscar","top"],
+      review: "Un amor imposible entre Polonia y Paris durante la Guerra Fria. Pawlikowski filma en blanco y negro con una belleza devastadora. Mejor Director en Cannes.",
+      rec: true
+    },
+
+    // ---- 2017 ----
+    {
+      title: "The Shape of Water",
+      director: "Guillermo del Toro",
+      year: 2017,
+      genre: "Adventure, Drama, Fantasy",
+      rt: 92,
+      imdb: 7.3,
+      poster: "posters/the-shape-of-water-2017.jpg",
+      awards: [{label:"Oscar Best Picture 2018",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"},{label:"Venice Golden Lion 2017",type:"venice"}],
+      tags: ["oscar","venice","top"],
+      review: "Del Toro crea un cuento de hadas oscuro sobre una mujer muda que se enamora de una criatura anfibia. 4 Oscars incluyendo Mejor Pelicula y Leon de Oro.",
+      rec: true
+    },
+    {
+      title: "Three Billboards Outside Ebbing, Missouri",
+      director: "Martin McDonagh",
+      year: 2017,
+      genre: "Comedy, Crime, Drama",
+      rt: 90,
+      imdb: 8.1,
+      poster: "posters/three-billboards-outside-ebbing-missouri-2017.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Golden Globe Best Drama 2018",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Frances McDormand declara guerra a la policia local tras el asesinato de su hija. 2 Oscars y Golden Globe. McDonagh en su forma mas brillante.",
+      rec: true
+    },
+    {
+      title: "Lady Bird",
+      director: "Greta Gerwig",
+      year: 2017,
+      genre: "Comedy, Drama",
+      rt: 99,
+      imdb: 7.4,
+      poster: "posters/lady-bird-2017.jpg",
+      awards: [{label:"Golden Globe Musical/Comedy 2018",type:"globes"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Oscar Nominada Best Director",type:"nom"}],
+      tags: ["oscar","globes","top"],
+      review: "Saoirse Ronan como una adolescente en Sacramento que quiere escapar. Gerwig debuta con 99% en RT. La mejor pelicula sobre crecer desde Boyhood.",
+      rec: true
+    },
+    {
+      title: "Get Out",
+      director: "Jordan Peele",
+      year: 2017,
+      genre: "Horror, Mystery, Thriller",
+      rt: 98,
+      imdb: 7.7,
+      poster: "posters/get-out-2017.jpg",
+      awards: [{label:"Oscar Best Original Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Peele reinventa el horror como comentario racial. Daniel Kaluuya descubre que la familia de su novia blanca esconde algo siniestro. Oscar a Mejor Guion. Historica.",
+      rec: true
+    },
+    {
+      title: "Phantom Thread",
+      director: "Paul Thomas Anderson",
+      year: 2017,
+      genre: "Drama, Romance",
+      rt: 91,
+      imdb: 7.5,
+      poster: "posters/phantom-thread-2017.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Oscar Nominada Best Director",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Daniel Day-Lewis se retira del cine como un modisto obsesivo en los 50s. PTA crea una historia de amor retorcida y elegante. Cada frame es una pintura."
+    },
+    {
+      title: "Dunkirk",
+      director: "Christopher Nolan",
+      year: 2017,
+      genre: "Action, Drama, History",
+      rt: 92,
+      imdb: 7.8,
+      poster: "posters/dunkirk-2017.jpg",
+      awards: [{label:"3 Oscars",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Nolan filma la evacuacion de Dunkirk con tres lineas temporales entrelazadas. 3 Oscars. Hans Zimmer crea la banda sonora mas tensa de la historia.",
+      rec: true
+    },
+    {
+      title: "Call Me by Your Name",
+      director: "Luca Guadagnino",
+      year: 2017,
+      genre: "Drama, Romance",
+      rt: 95,
+      imdb: 7.8,
+      poster: "posters/call-me-by-your-name-2017.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Timothee Chalamet y Armie Hammer en un verano de amor en Italia. Oscar a Mejor Guion. Guadagnino captura el deseo y la nostalgia con sensualidad exquisita.",
+      rec: true
+    },
+    {
+      title: "The Square",
+      director: "Ruben Ostlund",
+      year: 2017,
+      genre: "Comedy, Drama",
+      rt: 86,
+      imdb: 7.1,
+      poster: "posters/the-square-2017.jpg",
+      awards: [{label:"Palme d'Or Cannes 2017",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Ostlund gano su primera Palme d'Or con esta satira acida sobre el mundo del arte contemporaneo. Incomoda, provocadora y brillantemente absurda."
+    },
+    {
+      title: "On Body and Soul",
+      director: "Ildiko Enyedi",
+      year: 2017,
+      genre: "Drama, Romance",
+      rt: 88,
+      imdb: 7.5,
+      poster: "posters/on-body-and-soul-2017.jpg",
+      awards: [{label:"Golden Bear Berlin 2017",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Dos empleados de un matadero descubren que comparten los mismos suenos. Enyedi gano el Oso de Oro con una historia de amor profundamente original."
+    },
+
+    // ---- 2016 ----
+    {
+      title: "Moonlight",
+      director: "Barry Jenkins",
+      year: 2016,
+      genre: "Drama",
+      rt: 98,
+      imdb: 7.4,
+      poster: "posters/moonlight-2016.jpg",
+      awards: [{label:"Oscar Best Picture 2017",type:"oscar"},{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Oscar Best Adapted Screenplay",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Tres capitulos en la vida de un joven negro y queer en Miami. Jenkins crea poesia cinematografica pura. El momento del sobre equivocado es historia del Oscar.",
+      rec: true
+    },
+    {
+      title: "La La Land",
+      director: "Damien Chazelle",
+      year: 2016,
+      genre: "Comedy, Drama, Musical",
+      rt: 91,
+      imdb: 8.0,
+      poster: "posters/la-la-land-2016.jpg",
+      awards: [{label:"6 Oscars",type:"oscar"},{label:"Golden Globe Best Musical/Comedy 2017",type:"globes"},{label:"Venice Best Actress",type:"venice"}],
+      tags: ["oscar","globes","venice","top"],
+      review: "Ryan Gosling y Emma Stone bailan entre suenos y realidad en Los Angeles. 6 Oscars. Chazelle revive el musical clasico con melancolia moderna.",
+      rec: true
+    },
+    {
+      title: "Manchester by the Sea",
+      director: "Kenneth Lonergan",
+      year: 2016,
+      genre: "Drama",
+      rt: 96,
+      imdb: 7.8,
+      poster: "posters/manchester-by-the-sea-2016.jpg",
+      awards: [{label:"Oscar Best Actor",type:"oscar"},{label:"Oscar Best Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Casey Affleck gano el Oscar como un hombre destrozado por la tragedia. Lonergan escribe el duelo mas honesto del cine. 2 Oscars.",
+      rec: true
+    },
+    {
+      title: "I, Daniel Blake",
+      director: "Ken Loach",
+      year: 2016,
+      genre: "Drama",
+      rt: 92,
+      imdb: 7.9,
+      poster: "posters/i-daniel-blake-2016.jpg",
+      awards: [{label:"Palme d'Or Cannes 2016",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Loach gano su segunda Palme d'Or con esta denuncia furiosa del sistema de bienestar britanico. Un carpintero enfermo lucha contra la burocracia. Devastadora.",
+      rec: true
+    },
+    {
+      title: "Fire at Sea",
+      director: "Gianfranco Rosi",
+      year: 2016,
+      genre: "Documentary",
+      rt: 92,
+      imdb: 6.8,
+      poster: "posters/fire-at-sea-2016.jpg",
+      awards: [{label:"Golden Bear Berlin 2016",type:"berlin"}],
+      tags: ["berlin","top"],
+      review: "Documental sobre la crisis migratoria en Lampedusa. Rosi gano el Oso de Oro capturando la tragedia humana del Mediterraneo con observacion paciente."
+    },
+    {
+      title: "Hacksaw Ridge",
+      director: "Mel Gibson",
+      year: 2016,
+      genre: "Biography, Drama, History",
+      rt: 84,
+      imdb: 8.1,
+      poster: "posters/hacksaw-ridge-2016.jpg",
+      awards: [{label:"Oscar Best Film Editing",type:"oscar"},{label:"Oscar Best Sound",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Andrew Garfield como un objetor de conciencia que salvo 75 soldados en Okinawa sin un arma. Gibson regresa con un drama belico visceral. 2 Oscars."
+    },
+    {
+      title: "Arrival",
+      director: "Denis Villeneuve",
+      year: 2016,
+      genre: "Drama, Sci-Fi",
+      rt: 94,
+      imdb: 7.9,
+      poster: "posters/arrival-2016.jpg",
+      awards: [{label:"Oscar Best Sound Editing",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Amy Adams debe comunicarse con aliens antes de que el mundo entre en guerra. Villeneuve transforma la linguistica en thriller emocional. El giro final te cambia.",
+      rec: true
+    },
+    {
+      title: "Hell or High Water",
+      director: "David Mackenzie",
+      year: 2016,
+      genre: "Action, Crime, Drama",
+      rt: 97,
+      imdb: 7.6,
+      poster: "posters/hell-or-high-water-2016.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Oscar Nominada Best Screenplay",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Chris Pine y Ben Foster roban bancos en Texas para salvar la granja familiar. Jeff Bridges como el sheriff. Neo-western perfecto. 97% en RT.",
+      rec: true
+    },
+
+    // ---- 2015 ----
+    {
+      title: "Spotlight",
+      director: "Tom McCarthy",
+      year: 2015,
+      genre: "Biography, Crime, Drama",
+      rt: 97,
+      imdb: 8.1,
+      poster: "posters/spotlight-2015.jpg",
+      awards: [{label:"Oscar Best Picture 2016",type:"oscar"},{label:"Oscar Best Original Screenplay",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "El Boston Globe investiga el encubrimiento de abuso sexual en la Iglesia Catolica. Periodismo cinematografico perfecto. 2 Oscars. Imprescindible.",
+      rec: true
+    },
+    {
+      title: "The Revenant",
+      director: "Alejandro G. Inarritu",
+      year: 2015,
+      genre: "Action, Adventure, Drama",
+      rt: 79,
+      imdb: 8.0,
+      poster: "posters/the-revenant-2015.jpg",
+      awards: [{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Actor",type:"oscar"},{label:"Oscar Best Cinematography",type:"oscar"}],
+      tags: ["oscar"],
+      review: "DiCaprio finalmente gano el Oscar arrastandose por la nieve y peleando con un oso. Inarritu y Lubezki crean supervivencia visceral en planos secuencia imposibles."
+    },
+    {
+      title: "Mad Max: Fury Road",
+      director: "George Miller",
+      year: 2015,
+      genre: "Action, Adventure, Sci-Fi",
+      rt: 97,
+      imdb: 8.1,
+      poster: "posters/mad-max-fury-road-2015.jpg",
+      awards: [{label:"6 Oscars",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Miller a sus 70 anos crea la pelicula de accion mas pura del siglo. Charlize Theron como Furiosa. 6 Oscars. Dos horas de adrenalina sin respiro.",
+      rec: true
+    },
+    {
+      title: "Room",
+      director: "Lenny Abrahamson",
+      year: 2015,
+      genre: "Drama, Thriller",
+      rt: 93,
+      imdb: 8.1,
+      poster: "posters/room-2015.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar","top"],
+      review: "Brie Larson gano el Oscar como una madre secuestrada que protege a su hijo. La segunda mitad sobre la readaptacion es aun mas desgarradora que la primera.",
+      rec: true
+    },
+    {
+      title: "The Big Short",
+      director: "Adam McKay",
+      year: 2015,
+      genre: "Biography, Comedy, Drama",
+      rt: 88,
+      imdb: 7.8,
+      poster: "posters/the-big-short-2015.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Christian Bale, Steve Carell y Ryan Gosling apuestan contra la economia mundial. McKay explica la crisis financiera de 2008 con humor y furia."
+    },
+    {
+      title: "Son of Saul",
+      director: "Laszlo Nemes",
+      year: 2015,
+      genre: "Drama, War",
+      rt: 96,
+      imdb: 7.5,
+      poster: "posters/son-of-saul-2015.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"},{label:"Grand Prix Cannes 2015",type:"cannes"}],
+      tags: ["oscar","cannes","top"],
+      review: "Un prisionero en Auschwitz intenta dar un entierro digno a un nino. Nemes filma el Holocausto en primer plano con una inmediatez aterradora. Grand Prix Cannes.",
+      rec: true
+    },
+    {
+      title: "Dheepan",
+      director: "Jacques Audiard",
+      year: 2015,
+      genre: "Crime, Drama",
+      rt: 82,
+      imdb: 7.2,
+      poster: "posters/dheepan-2015.jpg",
+      awards: [{label:"Palme d'Or Cannes 2015",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Un ex-combatiente tamil se hace pasar por padre de familia en un suburbio frances. Audiard gano la Palme d'Or con un thriller sobre refugiados e identidad."
+    },
+    {
+      title: "Taxi",
+      director: "Jafar Panahi",
+      year: 2015,
+      genre: "Comedy, Drama",
+      rt: 97,
+      imdb: 7.3,
+      poster: "posters/taxi-2015.jpg",
+      awards: [{label:"Golden Bear Berlin 2015",type:"berlin"}],
+      tags: ["berlin","top"],
+      review: "Panahi conduce un taxi por Teheran filmando a sus pasajeros. Oso de Oro de Berlin. Cine como acto de resistencia contra la prohibicion de filmar.",
+      rec: true
+    },
+
+    // ---- 2014 ----
+    {
+      title: "Birdman",
+      director: "Alejandro G. Inarritu",
+      year: 2014,
+      genre: "Comedy, Drama",
+      rt: 91,
+      imdb: 7.7,
+      poster: "posters/birdman-2014.jpg",
+      awards: [{label:"Oscar Best Picture 2015",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Michael Keaton como un actor obsesionado con ser relevante. Inarritu filma en un plano secuencia aparente. 4 Oscars. Meta-cine brillante.",
+      rec: true
+    },
+    {
+      title: "The Grand Budapest Hotel",
+      director: "Wes Anderson",
+      year: 2014,
+      genre: "Adventure, Comedy, Crime",
+      rt: 92,
+      imdb: 8.1,
+      poster: "posters/the-grand-budapest-hotel-2014.jpg",
+      awards: [{label:"4 Oscars",type:"oscar"},{label:"Grand Prix Berlin 2014",type:"berlin"}],
+      tags: ["oscar","berlin","top"],
+      review: "Ralph Fiennes como un conserje de hotel en la Europa de entreguerras. Anderson en su maximo esplendor visual. 4 Oscars. Cada frame es un cuadro.",
+      rec: true
+    },
+    {
+      title: "Boyhood",
+      director: "Richard Linklater",
+      year: 2014,
+      genre: "Drama",
+      rt: 97,
+      imdb: 7.9,
+      poster: "posters/boyhood-2014.jpg",
+      awards: [{label:"Golden Globe Best Drama 2015",type:"globes"},{label:"Berlin Silver Bear Best Director",type:"berlin"}],
+      tags: ["globes","berlin","top"],
+      review: "Linklater filmo durante 12 anos la vida de un nino. Golden Globe y revolucion cinematografica. El paso del tiempo convertido en arte puro.",
+      rec: true
+    },
+    {
+      title: "Whiplash",
+      director: "Damien Chazelle",
+      year: 2014,
+      genre: "Drama, Music",
+      rt: 94,
+      imdb: 8.5,
+      poster: "posters/whiplash-2014.jpg",
+      awards: [{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "J.K. Simmons gano el Oscar como el profesor de musica mas aterrador del cine. Miles Teller sangra por su bateria. 8.5 IMDb. El final es perfecto.",
+      rec: true
+    },
+    {
+      title: "The Imitation Game",
+      director: "Morten Tyldum",
+      year: 2014,
+      genre: "Biography, Drama, Thriller",
+      rt: 89,
+      imdb: 8.0,
+      poster: "posters/the-imitation-game-2014.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"}],
+      tags: ["oscar"],
+      review: "Benedict Cumberbatch como Alan Turing descifrando Enigma. Oscar a Mejor Guion. Drama historico que honra al genio que gano la guerra y fue destruido por ella."
+    },
+    {
+      title: "Winter Sleep",
+      director: "Nuri Bilge Ceylan",
+      year: 2014,
+      genre: "Drama",
+      rt: 92,
+      imdb: 8.0,
+      poster: "posters/winter-sleep-2014.jpg",
+      awards: [{label:"Palme d'Or Cannes 2014",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Un hotel en Capadocia donde un hombre rico enfrenta sus contradicciones morales. Ceylan gano la Palme d'Or con un drama de 3 horas sobre ego y privilegio."
+    },
+
+    // ---- 2013 ----
+    {
+      title: "12 Years a Slave",
+      director: "Steve McQueen",
+      year: 2013,
+      genre: "Biography, Drama, History",
+      rt: 95,
+      imdb: 8.1,
+      poster: "posters/12-years-a-slave-2013.jpg",
+      awards: [{label:"Oscar Best Picture 2014",type:"oscar"},{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Oscar Best Supporting Actress",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Solomon Northup, un hombre libre vendido como esclavo. McQueen no aparta la mirada del horror. 3 Oscars. Lupita Nyong'o hace historia.",
+      rec: true
+    },
+    {
+      title: "Gravity",
+      director: "Alfonso Cuaron",
+      year: 2013,
+      genre: "Drama, Sci-Fi, Thriller",
+      rt: 96,
+      imdb: 7.7,
+      poster: "posters/gravity-2013.jpg",
+      awards: [{label:"Oscar Best Director",type:"oscar"},{label:"7 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Sandra Bullock sola en el espacio tras una catastrofe. Cuaron gano 7 Oscars. 91 minutos de tension absoluta que redefinio lo que el 3D podia hacer.",
+      rec: true
+    },
+    {
+      title: "Blue Is the Warmest Colour",
+      director: "Abdellatif Kechiche",
+      year: 2013,
+      genre: "Drama, Romance",
+      rt: 90,
+      imdb: 7.7,
+      poster: "posters/blue-is-the-warmest-colour-2013.jpg",
+      awards: [{label:"Palme d'Or Cannes 2013",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Adele Exarchopoulos y Lea Seydoux en un romance lesbiano de 3 horas. Kechiche gano la Palme d'Or. Intima, sensual y emocionalmente arrolladora.",
+      rec: true
+    },
+    {
+      title: "Ida",
+      director: "Pawel Pawlikowski",
+      year: 2013,
+      genre: "Drama",
+      rt: 97,
+      imdb: 7.3,
+      poster: "posters/ida-2013.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Una novicia polaca descubre su origen judio antes de tomar los votos. Pawlikowski filma en blanco y negro con composiciones sublimes. Oscar a Mejor Pelicula Extranjera.",
+      rec: true
+    },
+    {
+      title: "Sacro GRA",
+      director: "Gianfranco Rosi",
+      year: 2013,
+      genre: "Documentary",
+      rt: 82,
+      imdb: 6.5,
+      poster: "posters/sacro-gra-2013.jpg",
+      awards: [{label:"Venice Golden Lion 2013",type:"venice"}],
+      tags: ["venice"],
+      review: "Documental sobre las vidas alrededor de la autopista que rodea Roma. Rosi gano el Leon de Oro. El primer documental en ganar en Venecia en decadas."
+    },
+
+    // ---- 2012 ----
+    {
+      title: "Argo",
+      director: "Ben Affleck",
+      year: 2012,
+      genre: "Biography, Drama, Thriller",
+      rt: 96,
+      imdb: 7.7,
+      poster: "posters/argo-2012.jpg",
+      awards: [{label:"Oscar Best Picture 2013",type:"oscar"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Affleck recrea el rescate de diplomaticos en Iran usando una pelicula falsa como tapadera. 3 Oscars. Thriller historico de tension impecable.",
+      rec: true
+    },
+    {
+      title: "Amour",
+      director: "Michael Haneke",
+      year: 2012,
+      genre: "Drama, Romance",
+      rt: 93,
+      imdb: 7.9,
+      poster: "posters/amour-2012.jpg",
+      awards: [{label:"Palme d'Or Cannes 2012",type:"cannes"},{label:"Oscar Best International Film",type:"oscar"}],
+      tags: ["cannes","oscar","top"],
+      review: "Una pareja anciana enfrenta la enfermedad terminal. Haneke gano su segunda Palme d'Or y Oscar. El retrato mas honesto y devastador del amor hasta el final.",
+      rec: true
+    },
+    {
+      title: "Silver Linings Playbook",
+      director: "David O. Russell",
+      year: 2012,
+      genre: "Comedy, Drama, Romance",
+      rt: 92,
+      imdb: 7.7,
+      poster: "posters/silver-linings-playbook-2012.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Nominada",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Bradley Cooper y Jennifer Lawrence en una comedia romantica sobre salud mental. Lawrence gano el Oscar a los 22 anos. Energia contagiosa."
+    },
+    {
+      title: "Django Unchained",
+      director: "Quentin Tarantino",
+      year: 2012,
+      genre: "Drama, Western",
+      rt: 87,
+      imdb: 8.4,
+      poster: "posters/django-unchained-2012.jpg",
+      awards: [{label:"Oscar Best Original Screenplay",type:"oscar"},{label:"Oscar Best Supporting Actor",type:"oscar"}],
+      tags: ["oscar"],
+      review: "Jamie Foxx y Christoph Waltz rescatan a una esclava en el sur profundo. Tarantino mezcla spaghetti western con revisionismo historico. 2 Oscars.",
+      rec: true
+    },
+    {
+      title: "Caesar Must Die",
+      director: "Paolo & Vittorio Taviani",
+      year: 2012,
+      genre: "Drama",
+      rt: 88,
+      imdb: 6.9,
+      poster: "posters/caesar-must-die-2012.jpg",
+      awards: [{label:"Golden Bear Berlin 2012",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Prisioneros italianos montan Julio Cesar de Shakespeare. Los hermanos Taviani ganaron el Oso de Oro difuminando las lineas entre ficcion y realidad."
+    },
+
+    // ---- 2011 ----
+    {
+      title: "The Artist",
+      director: "Michel Hazanavicius",
+      year: 2011,
+      genre: "Comedy, Drama, Romance",
+      rt: 95,
+      imdb: 7.9,
+      poster: "posters/the-artist-2011.jpg",
+      awards: [{label:"Oscar Best Picture 2012",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Actor",type:"oscar"},{label:"5 Oscars",type:"oscar"},{label:"Cannes Best Actor",type:"cannes"}],
+      tags: ["oscar","cannes","top"],
+      review: "Pelicula muda en pleno siglo XXI. Jean Dujardin gano Oscar y Cannes. Hazanavicius homenajea al Hollywood clasico con encanto irresistible. 5 Oscars.",
+      rec: true
+    },
+    {
+      title: "The Descendants",
+      director: "Alexander Payne",
+      year: 2011,
+      genre: "Comedy, Drama",
+      rt: 89,
+      imdb: 7.3,
+      poster: "posters/the-descendants-2011.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Golden Globe Best Drama 2012",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "George Clooney como un padre en Hawaii que descubre la infidelidad de su esposa en coma. Payne equilibra humor y tragedia. Oscar a Mejor Guion."
+    },
+    {
+      title: "The Tree of Life",
+      director: "Terrence Malick",
+      year: 2011,
+      genre: "Drama, Fantasy",
+      rt: 85,
+      imdb: 6.8,
+      poster: "posters/the-tree-of-life-2011.jpg",
+      awards: [{label:"Palme d'Or Cannes 2011",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Malick conecta la infancia de un nino en Texas con el origen del universo. Palme d'Or de Cannes. La pelicula mas ambiciosa y divisiva de la decada.",
+      rec: true
+    },
+    {
+      title: "A Separation",
+      director: "Asghar Farhadi",
+      year: 2011,
+      genre: "Drama",
+      rt: 99,
+      imdb: 8.3,
+      poster: "posters/a-separation-2011.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"},{label:"Golden Bear Berlin 2011",type:"berlin"}],
+      tags: ["oscar","berlin","top"],
+      review: "Una pareja irani se separa y desencadena un conflicto moral imposible. 99% en RT. Oscar y Oso de Oro. Farhadi demuestra que el drama es universal.",
+      rec: true
+    },
+    {
+      title: "Melancholia",
+      director: "Lars von Trier",
+      year: 2011,
+      genre: "Drama, Sci-Fi",
+      rt: 80,
+      imdb: 7.1,
+      poster: "posters/melancholia-2011.jpg",
+      awards: [{label:"Best Actress Cannes 2011",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Kirsten Dunst gano Mejor Actriz en Cannes como una mujer deprimida mientras un planeta se acerca a la Tierra. Von Trier crea el apocalipsis mas bello del cine."
+    },
+
+    // ---- 2010 ----
+    {
+      title: "The King's Speech",
+      director: "Tom Hooper",
+      year: 2010,
+      genre: "Biography, Drama, History",
+      rt: 94,
+      imdb: 8.0,
+      poster: "posters/the-king-s-speech-2010.jpg",
+      awards: [{label:"Oscar Best Picture 2011",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Actor",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Colin Firth gano el Oscar como el Rey Jorge VI superando su tartamudez. 4 Oscars. Geoffrey Rush magnifico como el terapeuta del habla.",
+      rec: true
+    },
+    {
+      title: "The Social Network",
+      director: "David Fincher",
+      year: 2010,
+      genre: "Biography, Drama",
+      rt: 96,
+      imdb: 7.8,
+      poster: "posters/the-social-network-2010.jpg",
+      awards: [{label:"Oscar Best Adapted Screenplay",type:"oscar"},{label:"Golden Globe Best Drama 2011",type:"globes"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["oscar","globes","top"],
+      review: "Jesse Eisenberg como Mark Zuckerberg creando Facebook. Sorkin escribe y Fincher dirige la historia definitiva de nuestra era digital. 3 Oscars.",
+      rec: true
+    },
+    {
+      title: "Black Swan",
+      director: "Darren Aronofsky",
+      year: 2010,
+      genre: "Drama, Thriller",
+      rt: 85,
+      imdb: 8.0,
+      poster: "posters/black-swan-2010.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Venice Nominada",type:"venice"}],
+      tags: ["oscar"],
+      review: "Natalie Portman gano el Oscar como una bailarina consumida por la perfeccion y la locura. Aronofsky crea horror psicologico de alta cultura. Perturbadora."
+    },
+    {
+      title: "Uncle Boonmee Who Can Recall His Past Lives",
+      director: "Apichatpong Weerasethakul",
+      year: 2010,
+      genre: "Drama, Fantasy",
+      rt: 89,
+      imdb: 6.5,
+      poster: "posters/uncle-boonmee-who-can-recall-his-past-lives-2010.jpg",
+      awards: [{label:"Palme d'Or Cannes 2010",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Un hombre moribundo recibe visitas de fantasmas y vidas pasadas en la selva tailandesa. Palme d'Or de Cannes. Cine meditativo y unico en el mundo."
+    },
+    {
+      title: "Bal (Honey)",
+      director: "Semih Kaplanoglu",
+      year: 2010,
+      genre: "Drama",
+      rt: 75,
+      imdb: 7.0,
+      poster: "posters/bal-honey-2010.jpg",
+      awards: [{label:"Golden Bear Berlin 2010",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Un nino turco crece en un pueblo apicola mientras su padre desaparece en el bosque. Kaplanoglu gano el Oso de Oro con cine contemplativo y poetico."
+    },
+
+    // ---- 2009 ----
+    {
+      title: "The Hurt Locker",
+      director: "Kathryn Bigelow",
+      year: 2009,
+      genre: "Drama, Thriller, War",
+      rt: 97,
+      imdb: 7.5,
+      poster: "posters/the-hurt-locker-2009.jpg",
+      awards: [{label:"Oscar Best Picture 2010",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"6 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Bigelow se convierte en la primera mujer en ganar Oscar a Mejor Directora. Jeremy Renner desactiva bombas en Iraq. 6 Oscars. Tension insoportable.",
+      rec: true
+    },
+    {
+      title: "Inglourious Basterds",
+      director: "Quentin Tarantino",
+      year: 2009,
+      genre: "Adventure, Drama, War",
+      rt: 89,
+      imdb: 8.3,
+      poster: "posters/inglourious-basterds-2009.jpg",
+      awards: [{label:"Oscar Best Supporting Actor",type:"oscar"},{label:"Cannes Best Actor 2009",type:"cannes"}],
+      tags: ["oscar","cannes"],
+      review: "Christoph Waltz gano Oscar y Cannes como el nazi mas terrorifico del cine. Tarantino reescribe la WWII con tension verbal insuperable."
+    },
+    {
+      title: "Up",
+      director: "Pete Docter",
+      year: 2009,
+      genre: "Animation, Adventure, Comedy",
+      rt: 98,
+      imdb: 8.3,
+      poster: "posters/up-2009.jpg",
+      awards: [{label:"Oscar Best Animated Feature",type:"oscar"},{label:"Oscar Nominada Best Picture",type:"nom"},{label:"Golden Globe Best Animated",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Los primeros 10 minutos son la secuencia mas emotiva de la historia de la animacion. Pixar logra que un viejo y un nino volando en una casa te destruyan.",
+      rec: true
+    },
+    {
+      title: "The White Ribbon",
+      director: "Michael Haneke",
+      year: 2009,
+      genre: "Drama, Mystery",
+      rt: 85,
+      imdb: 7.7,
+      poster: "posters/the-white-ribbon-2009.jpg",
+      awards: [{label:"Palme d'Or Cannes 2009",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Eventos misteriosos en un pueblo aleman antes de la WWI. Haneke gano la Palme d'Or con un examen glacial del origen del fascismo. Blanco y negro impecable."
+    },
+    {
+      title: "Avatar",
+      director: "James Cameron",
+      year: 2009,
+      genre: "Action, Adventure, Fantasy",
+      rt: 81,
+      imdb: 7.9,
+      poster: "posters/avatar-2009.jpg",
+      awards: [{label:"Oscar Nominada Best Picture",type:"nom"},{label:"3 Oscars",type:"oscar"},{label:"Golden Globe Best Drama 2010",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Cameron revoluciona el cine con Pandora. La pelicula mas taquillera de la historia ($2.9B). 3 Oscars tecnicos. Experiencia IMAX 3D irrepetible."
+    },
+
+    // ---- 2008 ----
+    {
+      title: "Slumdog Millionaire",
+      director: "Danny Boyle",
+      year: 2008,
+      genre: "Drama, Romance",
+      rt: 91,
+      imdb: 8.0,
+      poster: "posters/slumdog-millionaire-2008.jpg",
+      awards: [{label:"Oscar Best Picture 2009",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"8 Oscars",type:"oscar"},{label:"Golden Globe Best Drama 2009",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Un chico de los suburbios de Mumbai gana millones en un concurso de television. 8 Oscars. Boyle crea un cuento de hadas moderno lleno de energia.",
+      rec: true
+    },
+    {
+      title: "The Dark Knight",
+      director: "Christopher Nolan",
+      year: 2008,
+      genre: "Action, Crime, Drama",
+      rt: 94,
+      imdb: 9.0,
+      poster: "posters/the-dark-knight-2008.jpg",
+      awards: [{label:"Oscar Best Supporting Actor",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Heath Ledger como el Joker es la actuacion de la decada. Oscar postumo merecidisimo. 9.0 IMDb. Nolan eleva el cine de superheroes a arte.",
+      rec: true
+    },
+    {
+      title: "The Class",
+      director: "Laurent Cantet",
+      year: 2008,
+      genre: "Drama",
+      rt: 97,
+      imdb: 7.4,
+      poster: "posters/the-class-2008.jpg",
+      awards: [{label:"Palme d'Or Cannes 2008",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Un profesor de frances en un barrio multicultural de Paris. Cantet gano la Palme d'Or con actores no profesionales. La escuela como microcosmos de la sociedad."
+    },
+    {
+      title: "The Wrestler",
+      director: "Darren Aronofsky",
+      year: 2008,
+      genre: "Drama, Sport",
+      rt: 98,
+      imdb: 7.9,
+      poster: "posters/the-wrestler-2008.jpg",
+      awards: [{label:"Venice Golden Lion 2008",type:"venice"}],
+      tags: ["venice","top"],
+      review: "Mickey Rourke en el regreso del siglo como un luchador acabado. Leon de Oro de Venecia. Rourke pone su propia vida en pantalla. Devastadora y real.",
+      rec: true
+    },
+
+    // ---- 2007 ----
+    {
+      title: "Tropa de Elite",
+      director: "Jose Padilha",
+      year: 2007,
+      genre: "Action, Crime, Drama",
+      rt: 80,
+      imdb: 8.0,
+      poster: "posters/tropa-de-elite-2007.jpg",
+      awards: [{label:"Golden Bear Berlin 2008",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Wagner Moura como un capitan del BOPE en las favelas de Rio. Padilha gano el Oso de Oro. Accion brasilena brutal y politicamente explosiva."
+    },
+    {
+      title: "No Country for Old Men",
+      director: "Joel & Ethan Coen",
+      year: 2007,
+      genre: "Crime, Drama, Thriller",
+      rt: 93,
+      imdb: 8.2,
+      poster: "posters/no-country-for-old-men-2007.jpg",
+      awards: [{label:"Oscar Best Picture 2008",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Javier Bardem como Anton Chigurh con el corte de pelo mas aterrador del cine. Los Coen crean el thriller perfecto. 4 Oscars. No es un pais para viejos.",
+      rec: true
+    },
+    {
+      title: "Atonement",
+      director: "Joe Wright",
+      year: 2007,
+      genre: "Drama, Mystery, Romance",
+      rt: 83,
+      imdb: 7.8,
+      poster: "posters/atonement-2007.jpg",
+      awards: [{label:"Golden Globe Best Drama 2008",type:"globes"}],
+      tags: ["globes"],
+      review: "Keira Knightley y James McAvoy en un romance destruido por una mentira infantil. Wright filma el plano secuencia de Dunkirk que inspiro a toda una generacion."
+    },
+    {
+      title: "4 Months, 3 Weeks and 2 Days",
+      director: "Cristian Mungiu",
+      year: 2007,
+      genre: "Drama",
+      rt: 97,
+      imdb: 7.9,
+      poster: "posters/4-months-3-weeks-and-2-days-2007.jpg",
+      awards: [{label:"Palme d'Or Cannes 2007",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Rumania, 1987. Dos amigas buscan un aborto clandestino bajo Ceausescu. Mungiu gano la Palme d'Or con un thriller moral de tension insoportable.",
+      rec: true
+    },
+    {
+      title: "Lust, Caution",
+      director: "Ang Lee",
+      year: 2007,
+      genre: "Drama, Romance, Thriller",
+      rt: 67,
+      imdb: 7.5,
+      poster: "posters/lust-caution-2007.jpg",
+      awards: [{label:"Venice Golden Lion 2007",type:"venice"}],
+      tags: ["venice"],
+      review: "Una espia seduce a un oficial japones en la Shanghai ocupada. Lee gano el Leon de Oro. Erotismo explicito y espionaje tenso. Tang Wei hipnotica."
+    },
+    {
+      title: "Tuya's Marriage",
+      director: "Wang Quan'an",
+      year: 2007,
+      genre: "Drama",
+      rt: 83,
+      imdb: 7.0,
+      poster: "posters/tuya-s-marriage-2007.jpg",
+      awards: [{label:"Golden Bear Berlin 2007",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Una mujer mongola debe decidir entre cuidar a su marido enfermo o buscar una vida mejor. Wang gano el Oso de Oro con un retrato intimo de la China rural."
+    },
+
+    // ---- 2006 ----
+    {
+      title: "The Departed",
+      director: "Martin Scorsese",
+      year: 2006,
+      genre: "Crime, Drama, Thriller",
+      rt: 91,
+      imdb: 8.5,
+      poster: "posters/the-departed-2006.jpg",
+      awards: [{label:"Oscar Best Picture 2007",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "DiCaprio y Damon como topos enfrentados en la mafia de Boston. Scorsese FINALMENTE gano su Oscar. 4 premios. Nicholson desatado. 8.5 IMDb.",
+      rec: true
+    },
+    {
+      title: "Babel",
+      director: "Alejandro G. Inarritu",
+      year: 2006,
+      genre: "Drama",
+      rt: 69,
+      imdb: 7.4,
+      poster: "posters/babel-2006.jpg",
+      awards: [{label:"Best Director Cannes 2006",type:"cannes"},{label:"Golden Globe Best Drama 2007",type:"globes"}],
+      tags: ["cannes","globes"],
+      review: "Cuatro historias conectadas en cuatro paises. Inarritu gano Mejor Director en Cannes. Brad Pitt, Cate Blanchett y Adriana Barraza en un mosaico global."
+    },
+    {
+      title: "The Wind That Shakes the Barley",
+      director: "Ken Loach",
+      year: 2006,
+      genre: "Drama, War",
+      rt: 90,
+      imdb: 7.5,
+      poster: "posters/the-wind-that-shakes-the-barley-2006.jpg",
+      awards: [{label:"Palme d'Or Cannes 2006",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Cillian Murphy en la guerra de independencia irlandesa. Loach gano su primera Palme d'Or. Drama belico politico que no toma prisioneros."
+    },
+    {
+      title: "Still Life",
+      director: "Jia Zhangke",
+      year: 2006,
+      genre: "Drama",
+      rt: 95,
+      imdb: 7.4,
+      poster: "posters/still-life-2006.jpg",
+      awards: [{label:"Venice Golden Lion 2006",type:"venice"}],
+      tags: ["venice","top"],
+      review: "Dos personas buscan a sus parejas en una ciudad china a punto de ser inundada por la Presa de las Tres Gargantas. Zhangke gano el Leon de Oro.",
+      rec: true
+    },
+    {
+      title: "Grbavica",
+      director: "Jasmila Zbanic",
+      year: 2006,
+      genre: "Drama",
+      rt: 80,
+      imdb: 7.4,
+      poster: "posters/grbavica-2006.jpg",
+      awards: [{label:"Golden Bear Berlin 2006",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Una mujer en Sarajevo esconde a su hija la verdad sobre su concepcion durante la guerra. Zbanic gano el Oso de Oro con un drama intimo sobre el trauma belico."
+    },
+
+    // ---- 2005 ----
+    {
+      title: "Crash",
+      director: "Paul Haggis",
+      year: 2005,
+      genre: "Crime, Drama, Thriller",
+      rt: 74,
+      imdb: 7.7,
+      poster: "posters/crash-2005.jpg",
+      awards: [{label:"Oscar Best Picture 2006",type:"oscar"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["oscar"],
+      review: "Multiples historias de racismo en Los Angeles se entrelazan. Gano el Oscar sobre Brokeback Mountain en la sorpresa mas grande de la decada. 3 premios."
+    },
+    {
+      title: "Brokeback Mountain",
+      director: "Ang Lee",
+      year: 2005,
+      genre: "Drama, Romance",
+      rt: 87,
+      imdb: 7.7,
+      poster: "posters/brokeback-mountain-2005.jpg",
+      awards: [{label:"Oscar Best Director",type:"oscar"},{label:"Venice Golden Lion 2005",type:"venice"},{label:"Golden Globe Best Drama 2006",type:"globes"}],
+      tags: ["oscar","venice","globes"],
+      review: "Heath Ledger y Jake Gyllenhaal como vaqueros enamorados. Lee gano Oscar a Director y Leon de Oro. La pelicula que cambio la representacion LGBTQ+ en Hollywood."
+    },
+    {
+      title: "L'Enfant",
+      director: "Jean-Pierre & Luc Dardenne",
+      year: 2005,
+      genre: "Crime, Drama",
+      rt: 96,
+      imdb: 7.5,
+      poster: "posters/l-enfant-2005.jpg",
+      awards: [{label:"Palme d'Or Cannes 2005",type:"cannes"}],
+      tags: ["cannes","top"],
+      review: "Un padre joven vende a su bebe recien nacido. Los Dardenne ganaron su segunda Palme d'Or con un drama social de una intensidad moral devastadora."
+    },
+    {
+      title: "U-Carmen eKhayelitsha",
+      director: "Mark Dornford-May",
+      year: 2005,
+      genre: "Drama, Music",
+      rt: 89,
+      imdb: 7.0,
+      poster: "posters/u-carmen-ekhayelitsha-2005.jpg",
+      awards: [{label:"Golden Bear Berlin 2005",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Carmen de Bizet adaptada a un township sudafricano con actores locales cantando en xhosa. Oso de Oro de Berlin. Opera reinventada con vibrante energia africana."
+    },
+
+    // ---- 2004 ----
+    {
+      title: "Million Dollar Baby",
+      director: "Clint Eastwood",
+      year: 2004,
+      genre: "Drama, Sport",
+      rt: 91,
+      imdb: 8.1,
+      poster: "posters/million-dollar-baby-2004.jpg",
+      awards: [{label:"Oscar Best Picture 2005",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Actress",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Eastwood dirige a Hilary Swank como una boxeadora que lo arriesga todo. 4 Oscars. El giro del tercer acto te destruye. Morgan Freeman narrador perfecto.",
+      rec: true
+    },
+    {
+      title: "The Aviator",
+      director: "Martin Scorsese",
+      year: 2004,
+      genre: "Biography, Drama",
+      rt: 87,
+      imdb: 7.5,
+      poster: "posters/the-aviator-2004.jpg",
+      awards: [{label:"5 Oscars",type:"oscar"},{label:"Golden Globe Best Drama 2005",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "DiCaprio como Howard Hughes entre la aviacion y la locura. 5 Oscars tecnicos. Scorsese recrea el Hollywood dorado con escala epica y Cate Blanchett gana Oscar."
+    },
+    {
+      title: "Fahrenheit 9/11",
+      director: "Michael Moore",
+      year: 2004,
+      genre: "Documentary, War",
+      rt: 83,
+      imdb: 7.5,
+      poster: "posters/fahrenheit-9-11-2004.jpg",
+      awards: [{label:"Palme d'Or Cannes 2004",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Moore ataca a Bush y la guerra de Iraq. Palme d'Or de Cannes y el documental mas taquillero de la historia. Provocador, furioso y divisivo."
+    },
+    {
+      title: "Head-On",
+      director: "Fatih Akin",
+      year: 2004,
+      genre: "Drama, Romance",
+      rt: 91,
+      imdb: 7.9,
+      poster: "posters/head-on-2004.jpg",
+      awards: [{label:"Golden Bear Berlin 2004",type:"berlin"}],
+      tags: ["berlin","top"],
+      review: "Dos turco-alemanes pactan un matrimonio de conveniencia que se convierte en pasion destructiva. Akin gano el Oso de Oro con un drama de amor salvaje."
+    },
+    {
+      title: "Vera Drake",
+      director: "Mike Leigh",
+      year: 2004,
+      genre: "Crime, Drama",
+      rt: 91,
+      imdb: 7.2,
+      poster: "posters/vera-drake-2004.jpg",
+      awards: [{label:"Venice Golden Lion 2004",type:"venice"}],
+      tags: ["venice","top"],
+      review: "Imelda Staunton como una mujer que realiza abortos clandestinos en el Londres de los 50s. Leigh gano el Leon de Oro. Actuacion que merecia el Oscar."
+    },
+
+    // ---- 2003 ----
+    {
+      title: "The Lord of the Rings: The Return of the King",
+      director: "Peter Jackson",
+      year: 2003,
+      genre: "Action, Adventure, Drama",
+      rt: 93,
+      imdb: 9.0,
+      poster: "posters/the-lord-of-the-rings-the-return-of-the-king-2003.jpg",
+      awards: [{label:"Oscar Best Picture 2004",type:"oscar"},{label:"11 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Jackson completa la trilogia con 11 Oscars, igualando el record historico. 9.0 IMDb. La conclusion epica mas satisfactoria del cine. Imposible no llorar.",
+      rec: true
+    },
+    {
+      title: "Lost in Translation",
+      director: "Sofia Coppola",
+      year: 2003,
+      genre: "Comedy, Drama, Romance",
+      rt: 95,
+      imdb: 7.7,
+      poster: "posters/lost-in-translation-2003.jpg",
+      awards: [{label:"Oscar Best Original Screenplay",type:"oscar"},{label:"Golden Globe Musical/Comedy 2004",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Bill Murray y Scarlett Johansson perdidos en Tokio. Coppola gano el Oscar a Mejor Guion. La soledad nunca se habia filmado con tanta belleza y humor.",
+      rec: true
+    },
+    {
+      title: "Elephant",
+      director: "Gus Van Sant",
+      year: 2003,
+      genre: "Crime, Drama",
+      rt: 72,
+      imdb: 7.1,
+      poster: "posters/elephant-2003.jpg",
+      awards: [{label:"Palme d'Or Cannes 2003",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Van Sant recrea un tiroteo escolar con minimalismo hipnotico. Palme d'Or de Cannes. La camara sigue a estudiantes antes de la tragedia. Escalofriante."
+    },
+    {
+      title: "The Return",
+      director: "Andrey Zvyagintsev",
+      year: 2003,
+      genre: "Drama",
+      rt: 91,
+      imdb: 7.9,
+      poster: "posters/the-return-2003.jpg",
+      awards: [{label:"Venice Golden Lion 2003",type:"venice"}],
+      tags: ["venice","top"],
+      review: "Un padre ausente regresa y lleva a sus dos hijos a un viaje misterioso. Zvyagintsev debuta con el Leon de Oro de Venecia. Paternidad como enigma."
+    },
+
+    // ---- 2002 ----
+    {
+      title: "Chicago",
+      director: "Rob Marshall",
+      year: 2002,
+      genre: "Comedy, Crime, Musical",
+      rt: 86,
+      imdb: 7.2,
+      poster: "posters/chicago-2002.jpg",
+      awards: [{label:"Oscar Best Picture 2003",type:"oscar"},{label:"6 Oscars",type:"oscar"},{label:"Golden Globe Musical/Comedy 2003",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Renee Zellweger, Catherine Zeta-Jones y Richard Gere en el musical mas exitoso en decadas. 6 Oscars. Revivio el genero musical en Hollywood.",
+      rec: true
+    },
+    {
+      title: "The Hours",
+      director: "Stephen Daldry",
+      year: 2002,
+      genre: "Drama",
+      rt: 80,
+      imdb: 7.5,
+      poster: "posters/the-hours-2002.jpg",
+      awards: [{label:"Oscar Best Actress",type:"oscar"},{label:"Golden Globe Best Drama 2003",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Nicole Kidman gano el Oscar irreconocible como Virginia Woolf. Tres mujeres en tres epocas conectadas por Mrs. Dalloway. Meryl Streep y Julianne Moore extraordinarias."
+    },
+    {
+      title: "The Pianist",
+      director: "Roman Polanski",
+      year: 2002,
+      genre: "Biography, Drama, Music",
+      rt: 95,
+      imdb: 8.5,
+      poster: "posters/the-pianist-2002.jpg",
+      awards: [{label:"Palme d'Or Cannes 2002",type:"cannes"},{label:"Oscar Best Director",type:"oscar"},{label:"Oscar Best Actor",type:"oscar"},{label:"3 Oscars",type:"oscar"}],
+      tags: ["cannes","oscar","top"],
+      review: "Adrien Brody como el pianista Wladyslaw Szpilman sobreviviendo el Holocausto. Palme d'Or y 3 Oscars. Brody se convierte en el mas joven en ganar Best Actor.",
+      rec: true
+    },
+    {
+      title: "Bloody Sunday",
+      director: "Paul Greengrass",
+      year: 2002,
+      genre: "Drama, History, War",
+      rt: 91,
+      imdb: 7.6,
+      poster: "posters/bloody-sunday-2002.jpg",
+      awards: [{label:"Golden Bear Berlin 2002",type:"berlin"}],
+      tags: ["berlin","top"],
+      review: "Greengrass recrea la masacre del Domingo Sangriento en Irlanda del Norte. Oso de Oro de Berlin. Docudrama con la urgencia de un noticiero en vivo."
+    },
+
+    // ---- 2001 ----
+    {
+      title: "Spirited Away",
+      director: "Hayao Miyazaki",
+      year: 2001,
+      genre: "Animation, Adventure, Family",
+      rt: 97,
+      imdb: 8.6,
+      poster: "posters/spirited-away-2001.jpg",
+      awards: [{label:"Oscar Best Animated Feature",type:"oscar"},{label:"Golden Bear Berlin 2002",type:"berlin"}],
+      tags: ["oscar","berlin","top"],
+      review: "Chihiro se pierde en un mundo de espiritus. Miyazaki gano el Oscar y Oso de Oro. 8.6 IMDb. La pelicula de animacion mas celebrada fuera de Disney.",
+      rec: true
+    },
+    {
+      title: "A Beautiful Mind",
+      director: "Ron Howard",
+      year: 2001,
+      genre: "Biography, Drama",
+      rt: 74,
+      imdb: 8.2,
+      poster: "posters/a-beautiful-mind-2001.jpg",
+      awards: [{label:"Oscar Best Picture 2002",type:"oscar"},{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"},{label:"Golden Globe Best Drama 2002",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Russell Crowe como el matematico John Nash luchando contra la esquizofrenia. 4 Oscars. Howard crea un thriller mental que mantiene el misterio hasta el final."
+    },
+    {
+      title: "Moulin Rouge!",
+      director: "Baz Luhrmann",
+      year: 2001,
+      genre: "Drama, Musical, Romance",
+      rt: 76,
+      imdb: 7.6,
+      poster: "posters/moulin-rouge-2001.jpg",
+      awards: [{label:"Oscar Best Art Direction",type:"oscar"},{label:"Oscar Best Costume",type:"oscar"},{label:"Golden Globe Musical/Comedy 2002",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Nicole Kidman y Ewan McGregor en un musical delirante en el Paris de 1900. Luhrmann reinventa el genero con pop moderno. Visualmente alucinante."
+    },
+    {
+      title: "No Man's Land",
+      director: "Danis Tanovic",
+      year: 2001,
+      genre: "Comedy, Drama, War",
+      rt: 93,
+      imdb: 7.9,
+      poster: "posters/no-man-s-land-2001.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"},{label:"Cannes Best Screenplay 2001",type:"cannes"}],
+      tags: ["oscar","cannes","top"],
+      review: "Dos soldados enemigos atrapados en una trinchera durante la guerra de Bosnia. Oscar a Mejor Pelicula Extranjera y Mejor Guion en Cannes. Satira belica genial."
+    },
+    {
+      title: "The Son's Room",
+      director: "Nanni Moretti",
+      year: 2001,
+      genre: "Drama",
+      rt: 86,
+      imdb: 7.5,
+      poster: "posters/the-son-s-room-2001.jpg",
+      awards: [{label:"Palme d'Or Cannes 2001",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Un psicoanalista italiano enfrenta la muerte de su hijo. Moretti gano la Palme d'Or con un drama sobre el duelo de una honestidad extraordinaria."
+    },
+    {
+      title: "Intimacy",
+      director: "Patrice Chereau",
+      year: 2001,
+      genre: "Drama, Romance",
+      rt: 60,
+      imdb: 6.1,
+      poster: "posters/intimacy-2001.jpg",
+      awards: [{label:"Golden Bear Berlin 2001",type:"berlin"}],
+      tags: ["berlin"],
+      review: "Dos desconocidos se encuentran semanalmente para sexo anonimo en Londres. Chereau gano el Oso de Oro con un drama explicito sobre intimidad, soledad y deseo."
+    },
+
+    // ---- 2000 ----
+    {
+      title: "Gladiator",
+      director: "Ridley Scott",
+      year: 2000,
+      genre: "Action, Adventure, Drama",
+      rt: 80,
+      imdb: 8.5,
+      poster: "posters/gladiator-2000.jpg",
+      awards: [{label:"Oscar Best Picture 2001",type:"oscar"},{label:"Oscar Best Actor",type:"oscar"},{label:"5 Oscars",type:"oscar"},{label:"Golden Globe Best Drama 2001",type:"globes"}],
+      tags: ["oscar","globes"],
+      review: "Russell Crowe gano el Oscar como Maximus en la arena romana. Scott revivio el genero epico con 5 Oscars. 8.5 IMDb. Are you not entertained?",
+      rec: true
+    },
+    {
+      title: "Traffic",
+      director: "Steven Soderbergh",
+      year: 2000,
+      genre: "Crime, Drama, Thriller",
+      rt: 93,
+      imdb: 7.6,
+      poster: "posters/traffic-2000.jpg",
+      awards: [{label:"Oscar Best Director",type:"oscar"},{label:"4 Oscars",type:"oscar"}],
+      tags: ["oscar","top"],
+      review: "Soderbergh gano Oscar a Director con este retrato multiple de la guerra contra las drogas. Benicio del Toro gano el Oscar de apoyo. 4 premios. Epica social."
+    },
+    {
+      title: "Dancer in the Dark",
+      director: "Lars von Trier",
+      year: 2000,
+      genre: "Crime, Drama, Musical",
+      rt: 66,
+      imdb: 8.0,
+      poster: "posters/dancer-in-the-dark-2000.jpg",
+      awards: [{label:"Palme d'Or Cannes 2000",type:"cannes"},{label:"Best Actress Cannes",type:"cannes"}],
+      tags: ["cannes"],
+      review: "Bjork como una inmigrante ciega acusada de asesinato en un musical devastador. Von Trier gano la Palme d'Or. La pelicula mas desgarradora jamas musicalizada."
+    },
+    {
+      title: "Magnolia",
+      director: "Paul Thomas Anderson",
+      year: 2000,
+      genre: "Drama",
+      rt: 83,
+      imdb: 8.0,
+      poster: "posters/magnolia-2000.jpg",
+      awards: [{label:"Golden Bear Berlin 2000",type:"berlin"}],
+      tags: ["berlin"],
+      review: "PTA entrelaza multiples historias en el Valle de San Fernando culminando en una lluvia de ranas. Oso de Oro de Berlin. Tom Cruise como guru misogino es brillante."
+    },
+    {
+      title: "Crouching Tiger, Hidden Dragon",
+      director: "Ang Lee",
+      year: 2000,
+      genre: "Action, Adventure, Fantasy",
+      rt: 97,
+      imdb: 7.8,
+      poster: "posters/crouching-tiger-hidden-dragon-2000.jpg",
+      awards: [{label:"Oscar Best International Film",type:"oscar"},{label:"4 Oscars",type:"oscar"},{label:"Golden Globe Best Foreign Language",type:"globes"}],
+      tags: ["oscar","globes","top"],
+      review: "Ang Lee crea la pelicula de artes marciales mas elegante de la historia. 4 Oscars. Chow Yun-fat y Michelle Yeoh desafian la gravedad. 97% en RT.",
+      rec: true
+    }
 ];
 const chingonas = [
   // === SCI-FI ===
@@ -3686,10 +5773,37 @@ function switchSection(section) {
 }
 
 // ======= FILTERING =======
+function getActiveTag(section) {
+  const filtersContainer = document.getElementById(section + '-filters');
+  const activeBtn = filtersContainer.querySelector('.filter-btn.active');
+  return activeBtn ? activeBtn.dataset.tag : 'all';
+}
+
+function getSelectedYear(section) {
+  const sel = document.getElementById('year-filter-' + section);
+  return sel ? sel.value : 'all';
+}
+
+function populateYearFilters() {
+  const sections = {
+    awards: movies, latino: latino, chingonas: chingonas,
+    discover: discover, studios: studios, cinelatam: cinelatam
+  };
+  Object.entries(sections).forEach(([section, data]) => {
+    const sel = document.getElementById('year-filter-' + section);
+    if (!sel) return;
+    const years = [...new Set(data.map(m => m.year))].sort((a, b) => b - a);
+    sel.innerHTML = '<option value="all">Todos</option>' +
+      years.map(y => '<option value="' + y + '">' + y + '</option>').join('');
+  });
+}
+
 function filterMovies(tag, section) {
   const filtersContainer = document.getElementById(section + '-filters');
-  filtersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  if (event && event.target && event.target.classList.contains('filter-btn')) {
+    filtersContainer.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+  }
 
   const isChingona = section === 'chingonas';
   const isLatino = section === 'latino';
@@ -3706,6 +5820,11 @@ function filterMovies(tag, section) {
     filtered = sourceData.filter(m => m.rt >= 90);
   } else {
     filtered = sourceData.filter(m => (m.tags||[]).includes(tag));
+  }
+
+  const selectedYear = getSelectedYear(section);
+  if (selectedYear !== 'all') {
+    filtered = filtered.filter(m => m.year === parseInt(selectedYear));
   }
 
   // Sort by combined score for chingonas, latino, discover, studios, and cinelatam
@@ -3793,6 +5912,7 @@ async function fixAllPosters() {
 setTimeout(fixAllPosters, 1500);
 
 // ======= INITIAL RENDER =======
+populateYearFilters();
 renderCards(movies, 'moviesGrid', false);
 renderCards(latino.sort((a,b) => calcCombined(b) - calcCombined(a)), 'latinoGrid', true);
 renderCards(chingonas.sort((a,b) => calcCombined(b) - calcCombined(a)), 'chingonasGrid', true);
