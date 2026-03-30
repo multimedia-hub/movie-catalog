@@ -450,7 +450,14 @@
     .movies-grid { grid-template-columns: 1fr; }
     .card-top { padding: 14px; }
     .poster-container { width: 100px; height: 150px; }
-    .main-tab { padding: 12px 16px; font-size: 0.85em; }
+    .main-tabs {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      justify-content: flex-start;
+    }
+    .main-tabs::-webkit-scrollbar { display: none; }
+    .main-tab { padding: 12px 14px; font-size: 0.78em; white-space: nowrap; flex-shrink: 0; }
   }
 </style>
 </head>
@@ -4419,7 +4426,7 @@ const latino = [
     year: 2024,
     genre: "Comedy, Drama",
     rt: 83, imdb: 7.2,
-    poster: "",
+    poster: "posters/casa-en-llamas-2024.jpg",
     awards: [{ label: "Goya Nominada Mejor Pelicula 2025", type: "goya" }],
     tags: ["goya"],
     review: "Comedia dramatica que reune a una familia disfuncional en una casa que literalmente arde. Humor y corazon a partes iguales."
@@ -4868,7 +4875,7 @@ const latino = [
     year: 2007,
     genre: "Drama, Romance",
     rt: 85, imdb: 7.2,
-    poster: "",
+    poster: "posters/luz-silenciosa-2007.jpg",
     awards: [{"label": "Ariel Mejor Pelicula 2008", "type": "ariel"}, {"label": "Premio del Jurado Cannes", "type": "cannes"}],
     tags: ["ariel"],
     review: "Un menonita en Chihuahua dividido entre su esposa y otra mujer. Reygadas filma con belleza contemplativa sobrecogedora."
@@ -5629,7 +5636,7 @@ const cinelatam = [
 {title:"Verónica",director:"Paco Plaza",year:2017,genre:"Terror",rt:88,imdb:6.2,poster: "posters/veronica-2017.jpg",awards:[],tags:["espanol","top"],category:"España",review:"Plaza adapta un caso paranormal real para crear horror doméstico ambientado en los 90. Genera inquietud psicológica profunda más que sustos explícitos.",rec:false},
 {title:"Handia",director:"Jon Garaño, Aitor Arregi",year:2017,genre:"Drama, Histórico",rt:80,imdb:6.8,poster: "posters/handia-2017.jpg",awards:[{label:"Goya Mejor Fotografía",type:"goya"}],tags:["espanol"],category:"España",review:"Retrato biográfico del Gigante de Altzo, el hombre más alto del País Vasco en el siglo XIX. Abordaje emotivo y poético de una historia extraordinaria.",rec:false},
 {title:"El Reino",director:"Rodrigo Sorogoyen",year:2018,genre:"Thriller, Drama",rt:93,imdb:7.3,poster: "posters/el-reino-2018.jpg",awards:[{label:"Goya Mejor Director",type:"goya"}],tags:["espanol","top"],category:"España",review:"Sorogoyen examina la corrupción política española con un ritmo vertiginoso. Thriller de tensión creciente que atrapa desde el primer minuto sin soltar jamás.",rec:true},
-{title:"Campeones",director:"Javier Fesser",year:2018,genre:"Comedia, Drama",rt:80,imdb:7.4,poster: "",awards:[{label:"Goya Mejor Película",type:"goya"}],tags:["espanol","top"],category:"España",review:"Un entrenador dirige un equipo de baloncesto con discapacidades intelectuales. Película inspiradora que combina humor auténtico con profunda humanidad.",rec:true},
+{title:"Campeones",director:"Javier Fesser",year:2018,genre:"Comedia, Drama",rt:80,imdb:7.4,poster: "posters/campeones-2018.jpg",awards:[{label:"Goya Mejor Película",type:"goya"}],tags:["espanol","top"],category:"España",review:"Un entrenador dirige un equipo de baloncesto con discapacidades intelectuales. Película inspiradora que combina humor auténtico con profunda humanidad.",rec:true},
 {title:"Dolor y Gloria",director:"Pedro Almodóvar",year:2019,genre:"Drama",rt:97,imdb:7.5,poster: "posters/dolor-y-gloria-2019.jpg",awards:[{label:"Nominada Oscar Mejor Actor",type:"oscar"},{label:"Cannes Mejor Actor",type:"cannes"}],tags:["espanol","top"],category:"España",review:"Almodóvar autobiografía su carrera a través de un director en crisis creativa. Drama íntimo sobre arte, memoria y amistad con Banderas magistral.",rec:true},
 {title:"Mientras Dure la Guerra",director:"Alejandro Amenábar",year:2019,genre:"Drama, Histórico",rt:73,imdb:6.6,poster: "posters/mientras-dure-la-guerra-2019.jpg",awards:[{label:"Goya Mejor Película",type:"goya"}],tags:["espanol"],category:"España",review:"Amenábar dramatiza los primeros días de la Guerra Civil española a través de Unamuno y Millán-Astray. Retrato histórico reflexivo sobre intelectualismo y fascismo.",rec:false},
 {title:"La Trinchera Infinita",director:"Jon Garaño, Aitor Arregi, José Mari Goenaga",year:2019,genre:"Drama, Histórico",rt:91,imdb:7.4,poster: "posters/la-trinchera-infinita-2019.jpg",awards:[{label:"Goya Mejor Actor",type:"goya"}],tags:["espanol","top"],category:"España",review:"Un hombre permanece escondido 33 años tras la Guerra Civil española. Drama histórico que captura el aislamiento extremo y la supervivencia con intensidad claustrofóbica.",rec:true},
@@ -5895,7 +5902,7 @@ async function fetchOMDBPoster(img) {
 }
 
 function showPlaceholder(img) {
-  if (img.parentElement) img.parentElement.innerHTML = '<div class="poster-placeholder">&#127916;</div>';
+  img.parentElement.innerHTML = '<div class="poster-placeholder">&#127916;</div>';
 }
 
 // Proactively fix all broken posters on load (batched to avoid rate limits)
