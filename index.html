@@ -47,7 +47,11 @@
     gap: 0;
     background: #0d0d18;
     border-bottom: 2px solid rgba(255,215,0,0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .main-tabs::-webkit-scrollbar { display: none; }
 
   .main-tab {
     padding: 16px 32px;
@@ -59,6 +63,8 @@
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     transition: all 0.3s;
+    white-space: nowrap;
+    flex-shrink: 0;
     border-bottom: 3px solid transparent;
     letter-spacing: 0.5px;
   }
