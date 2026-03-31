@@ -47,11 +47,7 @@
     gap: 0;
     background: #0d0d18;
     border-bottom: 2px solid rgba(255,215,0,0.1);
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
   }
-  .main-tabs::-webkit-scrollbar { display: none; }
 
   .main-tab {
     padding: 16px 32px;
@@ -450,20 +446,23 @@
     background: linear-gradient(90deg, #ff0066, #00ff88);
   }
 
+  @media (max-width: 1100px) {
+    .main-tabs {
+      justify-content: flex-start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .main-tabs::-webkit-scrollbar { display: none; }
+    .main-tab { padding: 14px 18px !important; font-size: 0.88em !important; }
+  }
   @media (max-width: 600px) {
     .hero h1 { font-size: 1.8em; }
     .chingonas-hero h2 { font-size: 1.5em; }
     .movies-grid { grid-template-columns: 1fr; }
     .card-top { padding: 14px; }
     .poster-container { width: 100px; height: 150px; }
-    .main-tabs {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      justify-content: flex-start;
-    }
-    .main-tabs::-webkit-scrollbar { display: none; }
-    .main-tab { padding: 12px 14px; font-size: 0.78em; white-space: nowrap; flex-shrink: 0; }
+    .main-tab { padding: 12px 14px !important; font-size: 0.78em !important; }
   }
 </style>
 </head>
